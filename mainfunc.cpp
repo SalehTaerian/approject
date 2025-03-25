@@ -50,7 +50,7 @@ void signin()
         }
     }
 }
-void writeininfofile(std::string username, std::string password, std::string name, std::string lastname)
+void writeininfofile(string username,string password, string name, string lastname)
 {
     FILE *fp;
     fp = fopen("info.json", "a+");
@@ -66,6 +66,7 @@ void writeininfofile(std::string username, std::string password, std::string nam
     if (fpsize==0)
     {
         jsonarray = json::array();
+        
     }
     jsonarray.push_back({{"username", username}, {"password", password}, {"name", name}, {"lastname", lastname}});
     int size = jsonarray.size();
