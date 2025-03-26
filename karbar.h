@@ -11,10 +11,11 @@ private:
     string lastname;
 
 public:
-    karbar(string username, string password, string name, string lastname);
-    void usernamegetter();
-    void passwordgetter();
-    void namegetter();
-    void lastnamegetter();
+    
+    karbar(string given_username, string givaen_password, string given_name, string given_lastname);
+    string usernamegetter();
+    string passwordgetter();
+    string namegetter();
+    string lastnamegetter();
 };
 #endif

@@ -3,6 +3,7 @@
 #include <string>
 #include "mainheader.h"
 #include "json.hpp"
+#include"karbar.cpp"
 using namespace std;
 using json = nlohmann::json;
 void welcome()
@@ -20,6 +21,7 @@ void signin()
     cin >> option;
     while (1)
     {
+
         if (option == 1)
         {
             cout << "Enter your username" << endl;
@@ -39,7 +41,8 @@ void signin()
             cin >> name;
             cout << "Enter your lastname" << endl;
             cin >> lastname;
-            writeininfofile(username, password, name, lastname);
+            karbar user1(username, password, name, lastname);
+            writeininfofile(user1);
             break;
         }
         else
@@ -50,7 +53,7 @@ void signin()
         }
     }
 }
-void writeininfofile(string username,string password, string name, string lastname)
+void writeininfofile(karbar user1)
 {
     FILE *fp;
     fp = fopen("info.json", "a+");
@@ -63,12 +66,11 @@ void writeininfofile(string username,string password, string name, string lastna
     fseek(fp, 0, SEEK_END);
     int fpsize = ftell(fp);
     fseek(fp, 0, SEEK_SET);
-    if (fpsize==0)
+    if (fpsize == 0)
     {
         jsonarray = json::array();
-        
     }
-    jsonarray.push_back({{"username", username}, {"password", password}, {"name", name}, {"lastname", lastname}});
+    jsonarray.push_back({{"username", user1.namegetter()}, {"password", user1.passwordgetter()}, {"name", user1.passwordgetter()}, {"lastname", user1.lastnamegetter()}});
     int size = jsonarray.size();
     string info = jsonarray.dump(size);
     int infosize = info.size();

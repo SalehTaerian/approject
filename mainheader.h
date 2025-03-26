@@ -4,5 +4,5 @@
 using namespace std;
 void welcome();
 void signin();
-void writeininfofile(string username,string password,string name, string lastname);
+void writeininfofile(karbar user1);
 #endif
