@@ -3,7 +3,7 @@
 #include <string>
 #include "mainheader.h"
 #include "json.hpp"
-#include"karbar.cpp"
+#include "karbar.cpp"
 using namespace std;
 using json = nlohmann::json;
 void welcome()
@@ -69,14 +69,32 @@ void writeininfofile(karbar user1)
     if (fpsize == 0)
     {
         jsonarray = json::array();
+        jsonarray.push_back({{"username", user1.namegetter()}, {"password", user1.passwordgetter()}, {"name", user1.passwordgetter()}, {"lastname", user1.lastnamegetter()}});
+        int size = jsonarray.size();
+        string info = jsonarray.dump(size);
+        int infosize = info.size();
+        char *infoarray = new char[infosize];
+        strcpy(infoarray, info.c_str());
+        fprintf(fp, "%s", infoarray);
+        delete[] infoarray;
     }
-    jsonarray.push_back({{"username", user1.namegetter()}, {"password", user1.passwordgetter()}, {"name", user1.passwordgetter()}, {"lastname", user1.lastnamegetter()}});
-    int size = jsonarray.size();
-    string info = jsonarray.dump(size);
-    int infosize = info.size();
-    char *infoarray = new char[infosize];
-    strcpy(infoarray, info.c_str());
-    fprintf(fp, "%s", infoarray);
+    if (fpsize > 0)
+    {
+        char *readfile = new char[fpsize+1];
+        fread(readfile,1 , fpsize, fp);
+        readfile[fpsize] = '\0';
+        jsonarray = json::parse(readfile);
+        jsonarray.push_back({{"username", user1.namegetter()}, {"password", user1.passwordgetter()}, {"name", user1.passwordgetter()}, {"lastname", user1.lastnamegetter()}});
+        delete[] readfile;
+        int size = jsonarray.size();
+        string info = jsonarray.dump(size);
+        int infosize = info.size();
+        char *infoarray = new char[infosize];
+        strcpy(infoarray, info.c_str());
+        fclose(fp);
+        fp = fopen("info.json", "w+");
+        fprintf(fp, "%s", infoarray);
+        delete[] infoarray;
+    }
     fclose(fp);
-    delete[] infoarray;
 }
