@@ -1,8 +1,8 @@
-#ifndef KARABR_H
+#ifndef KARBAR_H
 #define KARBAR_H
 #include <iostream>
 using namespace std;
-class karabr
+class karbar
 {
 private:
     string username;
@@ -11,6 +11,7 @@ private:
     string lastname;
 
 public:
+    karbar(string username, string password, string name, string lastname);
     void usernamegetter();
     void passwordgetter();
     void namegetter();
