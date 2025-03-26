@@ -69,7 +69,7 @@ void writeininfofile(karbar user1)
     if (fpsize == 0)
     {
         jsonarray = json::array();
-        jsonarray.push_back({{"username", user1.namegetter()}, {"password", user1.passwordgetter()}, {"name", user1.passwordgetter()}, {"lastname", user1.lastnamegetter()}});
+        jsonarray.push_back({{"username", user1.usernamegetter()}, {"password", user1.passwordgetter()}, {"name", user1.namegetter()}, {"lastname", user1.lastnamegetter()}});
         int size = jsonarray.size();
         string info = jsonarray.dump(size);
         int infosize = info.size();
@@ -84,7 +84,7 @@ void writeininfofile(karbar user1)
         fread(readfile,1 , fpsize, fp);
         readfile[fpsize] = '\0';
         jsonarray = json::parse(readfile);
-        jsonarray.push_back({{"username", user1.namegetter()}, {"password", user1.passwordgetter()}, {"name", user1.passwordgetter()}, {"lastname", user1.lastnamegetter()}});
+        jsonarray.push_back({{"username", user1.usernamegetter()}, {"password", user1.passwordgetter()}, {"name", user1.namegetter()}, {"lastname", user1.lastnamegetter()}});
         delete[] readfile;
         int size = jsonarray.size();
         string info = jsonarray.dump(size);
