@@ -35,6 +35,20 @@ void signin()
         {
             cout << "Enter your username" << endl;
             cin >> username;
+            while (1)
+            {
+                if (usernametekrari(username))
+                {
+                    cout << "this username already exist! try another!" << endl;
+                    cin.ignore();
+                    cin >> username;
+                    cin.ignore();
+                }
+                else
+                {
+                    break;
+                }
+            }
             cout << "Enter your password" << endl;
             cin >> password;
             cout << "Enter your name" << endl;
@@ -72,7 +86,7 @@ void writeininfofile(karbar user1)
             {
                 jsonarray = json::parse(readfile);
             }
-            catch (const json::parse_error)
+            catch (const json::parse_error &e)
             {
                 cout << "dobareh parse" << endl;
                 delete[] readfile;
@@ -98,4 +112,40 @@ void writeininfofile(karbar user1)
     string info = jsonarray.dump(4);
     fprintf(fp, "%s", info.c_str());
     fclose(fp);
+}
+int usernametekrari(string newusername)
+{
+    json jsonobj;
+    int flag = 0;
+    FILE *fp = fopen("info.json", "r");
+    fseek(fp, 0, SEEK_END);
+    int filesize = ftell(fp);
+    fseek(fp, 0, SEEK_SET);
+    char *readfile = new char[filesize + 1];
+    fread(readfile, 1, filesize, fp);
+    readfile[filesize] = '\0';
+    try
+    {
+        jsonobj = json::parse(readfile);
+    }
+    catch (const json::parse_error &e)
+    {
+        cout << "dobareh parse" << endl;
+        delete[] readfile;
+        return -1;
+    }
+    int sizeobj = jsonobj.size();
+
+    for (int i = 0; i < sizeobj; i++)
+    {
+        if (newusername == jsonobj[i]["username"])
+        {
+            flag = 1;
+        }
+    }
+    delete[] readfile;
+    fclose(fp);
+    if (flag)
+        return 1;
+    return 0;
 }
