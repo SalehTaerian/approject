@@ -28,7 +28,19 @@ void signin()
             cin >> username;
             cout << "Enter your password" << endl;
             cin >> password;
-            // بعدا کاملش کن باید از جیسون بخونم
+            while (1)
+            {
+                if (!userpassexist(username, password))
+                {
+                    cout << "incorrect username or password try again!" << endl;
+                    cout << "Enter your username" << endl;
+                    cin >> username;
+                    cout << "Enter your password" << endl;
+                    cin >> password;
+                }
+                else
+                    break;
+            }
             break;
         }
         else if (option == 2)
@@ -147,5 +159,47 @@ int usernametekrari(string newusername)
     fclose(fp);
     if (flag)
         return 1;
+    return 0;
+}
+int userpassexist(string user, string pass)
+{
+    json jsonobj;
+    FILE *fp = fopen("info.json", "r");
+    fseek(fp, 0, SEEK_END);
+    int filesize = ftell(fp);
+    fseek(fp, 0, SEEK_SET);
+    if (filesize == 0)
+    {
+        fclose(fp);
+        return 0;
+    }
+    char *readfile = new char[filesize + 1];
+    fread(readfile, 1, filesize, fp);
+    readfile[filesize] = '\0';
+    try
+    {
+        jsonobj = json::parse(readfile);
+    }
+    catch (const json::parse_error &e)
+    {
+        cout << "dobareh parse" << endl;
+        delete[] readfile;
+        fclose(fp);
+        return 0;
+    }
+    int membersize = jsonobj.size();
+    for (int i = 0; i < membersize; i++)
+    {
+        if (user == jsonobj[i]["username"])
+        {
+            if (pass == jsonobj[i]["password"])
+            {
+                fclose(fp);
+                delete[] readfile;
+                return 1;
+            }
+        }
+    }
+    fclose(fp);
     return 0;
 }
