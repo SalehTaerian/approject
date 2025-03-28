@@ -13,8 +13,24 @@ void welcome()
 }
 void signin()
 {
-    int option;
+    int option, panel, ramzshab, flag = 0;
     string username, password, name, lastname;
+    cout << "choose your panel:" << endl
+         << "1-daneshjoo" << endl
+         << "2-ostad" << endl;
+    cin >> panel;
+    while (1)
+    {
+        if (panel != 1 && panel != 2)
+        {
+            cout << "incorrect option try again!";
+            cin >> panel;
+        }
+        else
+        {
+            break;
+        }
+    }
     cout << "choose your option:" << endl;
     cout << "1-signin" << endl;
     cout << "2-signup" << endl;
@@ -28,19 +44,46 @@ void signin()
             cin >> username;
             cout << "Enter your password" << endl;
             cin >> password;
-            while (1)
+            if (username == "Admin" && password == "Admin")
             {
-                if (!userpassexist(username, password))
-                {
-                    cout << "incorrect username or password try again!" << endl;
-                    cout << "Enter your username" << endl;
-                    cin >> username;
-                    cout << "Enter your password" << endl;
-                    cin >> password;
-                }
-                else
-                    break;
+                admin();
             }
+            else
+            {
+
+                while (1)
+                {
+                    if (!userpassexist(username, password))
+                    {
+                        cout << "incorrect username or password try again!" << endl;
+                        cout << "Enter your username" << endl;
+                        cin >> username;
+                        cout << "Enter your password" << endl;
+                        cin >> password;
+                    }
+                    else
+                        break;
+                }
+            }
+            if (panel == 2)
+            {
+                cout << "Enter ramz shab:" << endl;
+                cin >> ramzshab;
+                if (ramzshab != 12345)
+                {
+                    while (1)
+                    {
+                        cout << "wrong ramzshab enter again!" << endl;
+                        cin >> ramzshab;
+                        if (ramzshab == 12345)
+                        {
+                            break;
+                        }
+                    }
+                }
+                ostad();
+            }
+            daneshjoo();
             break;
         }
         else if (option == 2)
@@ -67,6 +110,23 @@ void signin()
             cin >> name;
             cout << "Enter your lastname" << endl;
             cin >> lastname;
+            if (panel == 2)
+            {
+                cout << "Enter ramzshab!";
+                cin >> ramzshab;
+                if (ramzshab != 12345)
+                {
+                    while (1)
+                    {
+                        cout << "wrong ramz! enter again:";
+                        cin >> ramzshab;
+                        if (ramzshab == 12345)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
             karbar user1(username, password, name, lastname);
             writeininfofile(user1);
             break;
@@ -176,6 +236,16 @@ int userpassexist(string user, string pass)
     char *readfile = new char[filesize + 1];
     fread(readfile, 1, filesize, fp);
     readfile[filesize] = '\0';
+    cout << "File Content: " << readfile << endl;
+    cout << "Last char before null termination: " << readfile[filesize - 1] << endl;
+    for (int i = filesize - 5; i < filesize; i++)
+    { // آخرین ۵ کاراکتر رو چک کن
+        cout << "Char at " << i << ": " << int(readfile[i]) << " (" << readfile[i] << ")" << endl;
+    }
+    if (readfile[filesize - 1] == '\r')
+    {
+        cout << "jjj";
+    }
     try
     {
         jsonobj = json::parse(readfile);
