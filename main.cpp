@@ -19,6 +19,5 @@ int main()
     cout << "2-signup" << endl;
     cin >> option;
     karbar::signin(option);
-
     //مشکل پارس کردن سر اخرین حرف فایل جیسون که علامت سوال نشون می ده
 }
