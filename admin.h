@@ -10,7 +10,7 @@ private:
     void virayeshinfokarbar();
     void hazfkarbar();
     void restorekarbar();
-    void showdoroosinfo();
+    // void showdoroosinfo();
 public:
     void admincore();
 };
