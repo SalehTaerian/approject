@@ -5,6 +5,11 @@
 #include"ostad.cpp"
 #include"mainfunc.cpp"
 using namespace std;
+void welcome()
+{
+    cout << "----------welcome to yekestan----------";
+    cout << endl;
+}
 int main()
 {
     int option;
@@ -13,6 +18,7 @@ int main()
     cout << "1-signin" << endl;
     cout << "2-signup" << endl;
     cin >> option;
-    
+    karbar::signin(option);
+
     //مشکل پارس کردن سر اخرین حرف فایل جیسون که علامت سوال نشون می ده
 }
