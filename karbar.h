@@ -17,5 +17,6 @@ public:
     string passwordgetter();
     string namegetter();
     string lastnamegetter();
+    static void signin(int option);
 };
 #endif

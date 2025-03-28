@@ -7,7 +7,12 @@
 using namespace std;
 int main()
 {
+    int option;
     welcome();
-    signin();
+    cout << "choose option:" << endl;
+    cout << "1-signin" << endl;
+    cout << "2-signup" << endl;
+    cin >> option;
+    
     //مشکل پارس کردن سر اخرین حرف فایل جیسون که علامت سوال نشون می ده
 }
