@@ -46,7 +46,7 @@ void signin()
             cin >> password;
             if (username == "Admin" && password == "Admin")
             {
-                admin();
+                admincore();
             }
             else
             {
