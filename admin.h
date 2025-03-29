@@ -1,6 +1,8 @@
 #ifndef ADMIN_H
 #define ADMIN_H
 #include "karbar.h"
+#include"json.hpp"
+using json = nlohmann::json;
 class admin : public karbar
 {
 private:
@@ -10,7 +12,7 @@ private:
     void virayeshinfokarbar();
     void hazfkarbar();
     void restorekarbar();
-    // void showdoroosinfo();
+    void showdoroosinfo();
 public:
     void admincore();
 };
