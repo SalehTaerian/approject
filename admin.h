@@ -7,13 +7,13 @@ class admin : public karbar
 {
 private:
     int nomrehostad;
-    void addnewdaneshjoo();
-    void showkarbaranlist();
-    void virayeshinfokarbar();
-    void hazfkarbar();
-    void restorekarbar();
-    void showdoroosinfo();
+    static void addnewdaneshjoo();
+    static void showkarbaranlist();
+    static void virayeshinfokarbar();
+    static void hazfkarbar();
+    static void restorekarbar();
+    static void showdoroosinfo();
 public:
-    void admincore();
+    static void admincore();
 };
 #endif

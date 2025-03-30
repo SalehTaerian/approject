@@ -1,7 +1,7 @@
 #include <iostream>
 #include "karbar.cpp"
 #include "daneshjoo.cpp"
-// #include "admin.cpp"
+#include "admin.cpp"
 #include "ostad.cpp"
 #include "mainfunc.cpp"
 using namespace std;

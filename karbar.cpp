@@ -3,6 +3,7 @@
 #include "karbar.h"
 #include <iostream>
 #include "json.hpp"
+#include"admin.h"
 using namespace std;
 using json = nlohmann::json;
 karbar::karbar(string given_username, string given_password, string given_name, string given_lastname)
@@ -59,7 +60,7 @@ void karbar::signin(int option)
             cin >> password;
             if (username == "Admin" && password == "Admin")
             {
-                // admincore();
+                // admin::admincore();
             }
             else
             {

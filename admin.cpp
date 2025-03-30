@@ -19,7 +19,7 @@ void admin::admincore()
     case 2:
         showkarbaranlist();
     case 3:
-        virayeshinfokarbar();
+        // virayeshinfokarbar();
     case 4:
         hazfkarbar();
     case 5:
@@ -65,6 +65,72 @@ void showkarbaranlist()
 }
 void virayeshinfokarbar()
 {
+    json jsobj;
+    int option, flag = 0;
+    string username, newname, newlastname, newpass;
+    cout << "what do ypu want to change:" << endl
+         << "1-name" << endl;
+    cout << "2-latname" << endl
+         << "3-password" << endl;
+    cin >> option;
+    FILE *fp;
+    fp = fopen("info.json", "r");
+    fseek(fp, 0, SEEK_END);
+    int filesize = ftell(fp);
+    fseek(fp, 0, SEEK_SET);
+    char *readfile = new char[filesize + 1];
+    fread(readfile, 1, filesize, fp);
+    readfile[filesize] = '\0';
+    try
+    {
+        jsobj = json::parse(readfile);
+    }
+    catch (const json::parse_error &e)
+    {
+        cout << "dobareh parse" << endl;
+        fclose(fp);
+        delete[] readfile;
+        return;
+    }
+    cout << "Enter the username of karbar that you wanna change:" << endl;
+    cin >> username;
+    int jsonarray_size = jsobj.size();
+    for (int i = 0; i < jsonarray_size; i++)
+    {
+        if (jsobj[i]["username"] == username)
+        {
+            if (option == 1)
+            {
+                cout << "name jadid" << endl;
+                cin >> newname;
+                jsobj[i]["name"] = newname;
+            }
+            else if (option == 2)
+            {
+                cout << "lastname jadid" << endl;
+                cin >> newlastname;
+                jsobj[i]["lastname"] = newlastname;
+            }
+            else if (option == 3)
+            {
+                cout << "password jadid" << endl;
+                cin >> newpass;
+                jsobj[i]["password"] = newpass;
+            }
+            else
+            {
+                cout << "dalghak enghgadr eshtebah nazan digeh ah!!!!!" << endl;
+                exit(0);
+            }
+            fclose(fp);
+            break;
+        }
+    }
+    fp = fopen("info.json", "w");
+    string changedinfo = jsobj.dump(4);
+    fprintf(fp, "%s", changedinfo.c_str());
+    fclose(fp);
+    delete[] readfile;
 }
 void hazfkarbar()
 {
@@ -97,6 +163,7 @@ void hazfkarbar()
     {
         if (jsobj[i]["username"] == username)
         {
+            FILE *fp = fopen("restore.json", "w");
             jsobj.erase(jsobj.begin() + i);
             flag = 1;
             break;
@@ -113,5 +180,9 @@ void hazfkarbar()
     fprintf(fp, "%s", newinfo.c_str());
     fclose(fp);
 }
-void restorekarbar();
-void showdoroosinfo();
+void restorekarbar()
+{
+    
+}
+// void showdoroosinfo();
+//با رابطع بین کلاس ها بعد تغریف توی کلاس استاذ باید بیای توی این قسمت
