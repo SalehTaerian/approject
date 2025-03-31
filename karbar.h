@@ -17,8 +17,8 @@ public:
     string namegetter();
     string lastnamegetter();
     static void signin(int option);
+    static void writeinfile(karbar user1 ,  string filename);
 };
-void writeininfofile(karbar user1);
 int usernametekrari(string newusername);
 int userpassexist(string user, string pass);
 #endif

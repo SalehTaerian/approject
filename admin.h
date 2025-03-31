@@ -16,4 +16,5 @@ private:
 public:
     static void admincore();
 };
+void creatingfile(string filename);
 #endif

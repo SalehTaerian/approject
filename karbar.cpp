@@ -142,7 +142,7 @@ void karbar::signin(int option)
                 }
             }
             karbar user1(username, password, name, lastname);
-            writeininfofile(user1);
+            writeinfile(user1 , "info.json");
             break;
         }
         else
@@ -153,9 +153,9 @@ void karbar::signin(int option)
         }
     }
 }
-void writeininfofile(karbar user1)
+void karbar::writeinfile(karbar user1 ,string filename)
 {
-    FILE *fp = fopen("info.json", "r");
+    FILE *fp = fopen(filename.c_str(), "r");
     json jsonarray;
     if (fp != nullptr)
     {
@@ -165,8 +165,8 @@ void writeininfofile(karbar user1)
         if (fpsize > 0)
         {
             char *readfile = new char[fpsize + 1];
-            fread(readfile, 1, fpsize, fp);
-            readfile[fpsize] = '\0';
+            int sizefile = fread(readfile, 1, fpsize, fp);
+            readfile[sizefile] = '\0';
             fclose(fp);
             try
             {
@@ -194,9 +194,9 @@ void writeininfofile(karbar user1)
                          {"lastname", user1.lastnamegetter()},
                          {"username", user1.usernamegetter()},
                          {"password", user1.passwordgetter()}});
-    fp = fopen("info.json", "w");
+    fp = fopen(filename.c_str(), "w");
     string info = jsonarray.dump(4);
-    fprintf(fp, "%s", info.c_str());
+    fwrite(info.c_str() ,1 ,info.size() , fp);
     fclose(fp);
 }
 int usernametekrari(string newusername)
@@ -208,8 +208,8 @@ int usernametekrari(string newusername)
     int filesize = ftell(fp);
     fseek(fp, 0, SEEK_SET);
     char *readfile = new char[filesize + 1];
-    fread(readfile, 1, filesize, fp);
-    readfile[filesize] = '\0';
+    int sizefile =fread(readfile, 1, filesize, fp);
+    readfile[sizefile] = '\0';
     try
     {
         jsonobj = json::parse(readfile);
@@ -248,8 +248,8 @@ int userpassexist(string user, string pass)
         return 0;
     }
     char *readfile = new char[filesize + 1];
-    fread(readfile, 1, filesize, fp);
-    readfile[filesize] = '\0';
+    int sizefile =fread(readfile, 1, filesize, fp);
+    readfile[sizefile] = '\0';
     cout << "File Content: " << readfile << endl;
     cout << "Last char before null termination: " << readfile[filesize - 1] << endl;
     for (int i = filesize - 5; i < filesize; i++)

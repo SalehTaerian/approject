@@ -5,7 +5,6 @@
 #include "ostad.cpp"
 #include "mainfunc.cpp"
 using namespace std;
-
 int main()
 {
     int option;

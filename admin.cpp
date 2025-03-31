@@ -32,7 +32,7 @@ void admin::addnewdaneshjoo()
 {
     signin(2);
 }
-void showkarbaranlist()
+void admin::showkarbaranlist()
 {
     FILE *fp;
     json jsobj;
@@ -41,8 +41,8 @@ void showkarbaranlist()
     int filesize = ftell(fp);
     fseek(fp, 0, SEEK_SET);
     char *readfile = new char[filesize + 1];
-    fread(readfile, 1, filesize, fp);
-    readfile[filesize] = '\0';
+    int sizefile =fread(readfile, 1, filesize, fp);
+    readfile[sizefile] = '\0';
     try
     {
         jsobj = json::parse(readfile);
@@ -63,7 +63,7 @@ void showkarbaranlist()
     fclose(fp);
     delete[] readfile;
 }
-void virayeshinfokarbar()
+void admin::virayeshinfokarbar()
 {
     json jsobj;
     int option, flag = 0;
@@ -79,8 +79,8 @@ void virayeshinfokarbar()
     int filesize = ftell(fp);
     fseek(fp, 0, SEEK_SET);
     char *readfile = new char[filesize + 1];
-    fread(readfile, 1, filesize, fp);
-    readfile[filesize] = '\0';
+    int sizefile = fread(readfile, 1, filesize, fp);
+    readfile[sizefile] = '\0';
     try
     {
         jsobj = json::parse(readfile);
@@ -128,7 +128,7 @@ void virayeshinfokarbar()
     }
     fp = fopen("info.json", "w");
     string changedinfo = jsobj.dump(4);
-    fprintf(fp, "%s", changedinfo.c_str());
+    fwrite(changedinfo.c_str() ,1 ,changedinfo.size() ,fp);
     fclose(fp);
     delete[] readfile;
 }
@@ -143,8 +143,9 @@ void hazfkarbar()
     int filesize = ftell(fp);
     fseek(fp, 0, SEEK_SET);
     char *readfile = new char[filesize + 1];
-    fread(readfile, 1, filesize, fp);
-    readfile[filesize] = '\0';
+    int size = fread(readfile, 1, filesize, fp);
+    readfile[size] = '\0';
+    cout << readfile<<endl;
     try
     {
         jsobj = json::parse(readfile);
@@ -158,12 +159,12 @@ void hazfkarbar()
     }
     cout << "Enter the username of karbar that you wanna delete:" << endl;
     cin >> username;
-    int jsonarray_size = jsobj.size();
-    for (int i = 0; i < jsonarray_size; i++)
+    for (int i = 0; i <  jsobj.size(); i++)
     {
         if (jsobj[i]["username"] == username)
         {
-            FILE *fp = fopen("restore.json", "w");
+            karbar user1(jsobj[i]["username"], jsobj[i]["password"], jsobj[i]["name"], jsobj[i]["lastname"]);
+            karbar::writeinfile(user1, "restore.json");
             jsobj.erase(jsobj.begin() + i);
             flag = 1;
             break;
@@ -177,12 +178,61 @@ void hazfkarbar()
     delete[] readfile;
     fp = fopen("info.json", "w");
     string newinfo = jsobj.dump(4);
-    fprintf(fp, "%s", newinfo.c_str());
+    fwrite(newinfo.c_str() ,1 ,newinfo.size() , fp);
     fclose(fp);
 }
 void restorekarbar()
 {
-    
+    json jsobj;
+    creatingfile("restore.json");
+    FILE *fp = fopen("restore.json", "r+");
+    fseek(fp, 0, SEEK_END);
+    int filesize = ftell(fp);
+    fseek(fp, 0, SEEK_SET);
+    if (filesize == 0)
+    {
+        cout << "don't have any karbar in trashfile";
+        return;
+    }
+    char *readfile = new char[filesize + 1];
+    int size = fread(readfile, 1, filesize, fp);
+    readfile[size] = '\0';
+    try
+    {
+        jsobj = json::parse(readfile);
+    }
+    catch (const json::parse_error &e)
+    {
+        cout << "dobareh parse" << endl;
+        fclose(fp);
+        delete[] readfile;
+        return;
+    }
+    for (int i = 0; i <  jsobj.size(); i++)
+    {
+        karbar user1(jsobj[i]["username"], jsobj[i]["password"], jsobj[i]["name"], jsobj[i]["lastname"]);
+        karbar::writeinfile(user1, "info.json");
+        jsobj.erase(jsobj.begin() + i);
+    }
+    fclose(fp);
+    FILE *fp2 = fopen("restore.json", "w");
+    fclose(fp2);
+    delete[] readfile;
 }
-// void showdoroosinfo();
-//با رابطع بین کلاس ها بعد تغریف توی کلاس استاذ باید بیای توی این قسمت
+void creatingfile(string filename)
+{
+    FILE *fp = fopen(filename.c_str(), "r");
+    if (fp)
+    {
+        fclose(fp);
+        return;
+    }
+    else 
+    {
+        fclose(fp);
+        fp = fopen(filename.c_str(), "w");
+        fclose(fp);
+    }
+}
+// void admin::showdoroosinfo();
+// با رابطع بین کلاس ها بعد تغریف توی کلاس استاذ باید بیای توی این قسمت

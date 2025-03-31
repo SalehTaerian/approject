@@ -1,17 +1,5 @@
 [
     {
-        "lastname": "taerian",
-        "name": "saly",
-        "password": "saleh1385",
-        "username": "saleh"
-    },
-    {
-        "lastname": "taerian",
-        "name": "sobhan",
-        "password": "sobhan1375",
-        "username": "sobhan"
-    },
-    {
         "lastname": "azari",
         "name": "maryam",
         "password": "maryam1973",
@@ -19,8 +7,8 @@
     },
     {
         "lastname": "taerian",
-        "name": "ali",
-        "password": "ali1345",
-        "username": "ali"
+        "name": "sobhan",
+        "password": "sobhan1375",
+        "username": "sobhan"
     }
 ]
