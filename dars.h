@@ -7,21 +7,29 @@ class dars
 {
 private:
     string darsname;
+    string darsinfo;
     float nomrehdars;
+    int taklifnum;
+
 public:
     int zarfiat;
-    class taklif
-    {
-        private:
-            string tarikh_shoroo;
-            string tarikh_payan;
-            string sharh;
-            float nomreh_taklif;
-        public:
-            taklif(string tarikh_shoroo, string tarikh_payan, string sharh, float nomreh_taklif);
-            void getter(int option);
-    };
-    taklif *taklif[10];
-    
+    taklif takliflist[10];
+    void darsgetter();
+    dars(string darsname, string darsinfo, float nomrehdars, int zarfiat, int taklifnum1);
+    void addtaklif();
+    void setnomreh();
+};
+class taklif
+{
+private:
+    string tarikh_shoroo;
+    string tarikh_payan;
+    string sharh;
+
+public:
+    float nomreh_taklif;
+    taklif();
+    taklif(string tarikh_shoroo, string tarikh_payan, string sharh);
+    void getter();
 };
 #endif

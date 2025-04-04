@@ -1,9 +1,10 @@
 #ifndef OSTAD_H
 #define OSTAD_H
-class ostad
+#include"karbar.h"
+class ostad:public karbar
 {
     public:
         void listdaneshjooha();
-        
+
 };
 #endif
