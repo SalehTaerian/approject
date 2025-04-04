@@ -16,16 +16,22 @@ void admin::admincore()
     {
     case 1:
         addnewdaneshjoo();
+        break;
     case 2:
         showkarbaranlist();
+        break;
     case 3:
         // virayeshinfokarbar();
+        break;
     case 4:
         hazfkarbar();
+        break;
     case 5:
         restorekarbar();
+        break;
     case 6:
         showdoroosinfo();
+        break;
     }
 }
 void admin::addnewdaneshjoo()

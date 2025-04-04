@@ -5,6 +5,8 @@ class ostad:public karbar
 {
     public:
         void listdaneshjooha();
-
+        void ostadcore();
+        void newdars();
+        
 };
 #endif
