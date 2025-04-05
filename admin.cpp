@@ -138,7 +138,7 @@ void admin::virayeshinfokarbar()
     fclose(fp);
     delete[] readfile;
 }
-void hazfkarbar()
+void admin::hazfkarbar()
 {
     FILE *fp;
     json jsobj;
@@ -187,7 +187,7 @@ void hazfkarbar()
     fwrite(newinfo.c_str() ,1 ,newinfo.size() , fp);
     fclose(fp);
 }
-void restorekarbar()
+void admin::restorekarbar()
 {
     json jsobj;
     creatingfile("restore.json");

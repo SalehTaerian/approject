@@ -1,12 +1,16 @@
 #ifndef OSTAD_H
 #define OSTAD_H
-#include"karbar.h"
-class ostad:public karbar
+#include "karbar.h"
+#include "dars.h"
+#include "admin.h"
+class ostad : public karbar
 {
-    public:
-        void listdaneshjooha();
-        void ostadcore();
-        void newdars();
-        
+private:
+    int darscounter = 0;
+    void listdaneshjooha(admin access);
+    void ostadcore();
+    void newdars();
+    dars doroos[10];
+    void writeindarsfile(string filename);
 };
 #endif

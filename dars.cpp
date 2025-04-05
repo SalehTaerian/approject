@@ -27,7 +27,7 @@ void taklif::getter()
 void dars::setnomrehdars()
 {
     float nomreh;
-    cout << "enter your nomreh" << endl;
+    cout << "enter nomreh" << endl;
     cin >> nomreh;
     nomrehdars = nomreh;
 }
@@ -57,7 +57,7 @@ taklif::taklif() : tarikh_shoroo(""), tarikh_payan(""), sharh("")
 taklif::taklif(string tarikh_shoroo1, string tarikh_payan1, string sharh1) : tarikh_shoroo(tarikh_shoroo1), tarikh_payan(tarikh_payan1), sharh(sharh1)
 {
 }
-dars::dars(string darsname1, string darsinfo1, float nomrehdars1, int zarfiat1) : darsname(darsname1), darsinfo(darsinfo1), nomrehdars(nomrehdars1), zarfiat(zarfiat1), taklifnum(0) ,numettel(0)
+dars::dars(string darsname1, string darsinfo1, int zarfiat1) : darsname(darsname1), darsinfo(darsinfo1), zarfiat(zarfiat1), taklifnum(0) ,numettel(0)
 {
     for (int i = 0; i < 10; i++)
     {
@@ -83,7 +83,7 @@ void dars::addtaklif()
         taklifnum++;
     }
 }
-void dars::setnomreh()
+void dars::setnomreh_taklif()
 {
     float nomreh;
     cout << "Enter nomreh:" << endl;

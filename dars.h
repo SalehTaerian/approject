@@ -16,9 +16,9 @@ public:
     int zarfiat;
     taklif takliflist[10];
     void darsgetter();
-    dars(string darsname, string darsinfo, float nomrehdars, int zarfiat);
+    dars(string darsname, string darsinfo, int zarfiat);
     void addtaklif();
-    void setnomreh();
+    void setnomreh_taklif();
     void setnomrehdars();
     void set_ettelaeieh();
     void show_ettel();
