@@ -14,7 +14,10 @@ private:
 public:
     int zarfiat;
     taklif takliflist[10];
-    void darsgetter();
+    string namedars_getter();
+    string infodars_getter();
+    float nomrehdarsgetter();
+    int taklifnumgetter();
     dars(string darsname, string darsinfo, float nomrehdars, int zarfiat, int taklifnum1);
     void addtaklif();
     void setnomreh();
@@ -30,6 +33,8 @@ public:
     float nomreh_taklif;
     taklif();
     taklif(string tarikh_shoroo, string tarikh_payan, string sharh);
-    void getter();
+    string start_getter();
+    string payan_getter();
+    string sharh_getter();
 };
 #endif

@@ -1,44 +1,31 @@
 #include "dars.h"
 #include <iostream>
-void taklif::getter()
+string taklif::start_getter()
 {
-    int option;
-    cout << "choose your option" << endl;
-    cout << "1-tarikh_shoroo 2- tarikh_payan  3 -sharh taklif" << endl;
-    cin >> option;
-    if (option == 1)
-    {
-        cout << "tarikh shoroo:" << "\t" << tarikh_shoroo << endl;
-    }
-    else if (option == 2)
-    {
-        cout << "tarikh payan:" << "\t" << tarikh_payan << endl;
-    }
-    else if (option == 3)
-    {
-        cout << "sharh taklif:" << "\t" << sharh << endl;
-    }
-    else
-    {
-        cout << "dalghak dobareh eshtebah zadi!!" << endl;
-        exit(0);
-    }
+    return tarikh_shoroo;
 }
-void dars::darsgetter()
+string taklif::payan_getter()
 {
-    int option;
-    cout << "Enter your option:" << endl
-         << "1-darsinfo" << endl
-         << "2-nomrehdars" << endl;
-    cin >> option;
-    if (option == 1)
-    {
-        cout << darsinfo << endl;
-    }
-    else if (option == 2)
-    {
-        cout << "youre nomreh: " << nomrehdars << endl;
-    }
+    return tarikh_payan;
+}string taklif::sharh_getter()
+{
+    return sharh;
+}
+string dars::namedars_getter()
+{
+    return darsname;
+}
+string dars::infodars_getter()
+{
+    return darsinfo;
+}
+float dars::nomrehdarsgetter()
+{
+    return nomrehdars;
+}
+int dars::taklifnumgetter()
+{
+    return taklifnum;
 }
 taklif::taklif() : tarikh_shoroo(""), tarikh_payan(""), sharh("")
 {
