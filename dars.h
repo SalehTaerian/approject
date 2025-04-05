@@ -10,20 +10,21 @@ private:
     string darsinfo;
     float nomrehdars;
     int taklifnum;
-    string etteleieh[10];
+    string ettelaeieh[10];
     int numettel = 0;
 public:
     int zarfiat;
     taklif takliflist[10];
     string namedars_getter();
     string infodars_getter();
+    string *get_ettelaeieh();
     float nomrehdarsgetter();
     int taklifnumgetter();
     dars(string darsname, string darsinfo , int zarfiat);
     void addtaklif();
     void setnomreh_taklif();
     void setnomrehdars();
-    void set_ettelaeieh();
+    void set_ettelaeieh(string darsname  ,string news);
     void show_ettel();
 };
 class taklif
