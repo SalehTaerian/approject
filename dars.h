@@ -21,7 +21,7 @@ public:
     float nomrehdarsgetter();
     int taklifnumgetter();
     dars(string darsname, string darsinfo , int zarfiat);
-    void addtaklif();
+    void addtaklif(string namedars , string sharh_taklif,string tarikh_shoroo , string tarikh_payan);
     void setnomreh_taklif();
     void setnomrehdars();
     void set_ettelaeieh(string darsname  ,string news);

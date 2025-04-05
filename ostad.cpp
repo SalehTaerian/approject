@@ -6,7 +6,8 @@ void ostad::ostadcore()
 
     int option;
     int shomarehdars;
-    string esmdars, khabar;
+    string soal , namedars;
+    string esmdars, khabar ,tarikh_shoroo ,tarikh_payan;
     cout << "Welcom ostad!" << endl;
     cout << "what do you want to do?" << endl
          << "1-namayesh list daneshjooha" << endl
@@ -42,7 +43,15 @@ void ostad::ostadcore()
     case 5:
         cout << "Enter shomareh dars mored nazar" << endl;
         cin >> shomarehdars;
-        doroos[shomarehdars].addtaklif();
+        cout << "Enter namedars barayeh ettelaeieh:" << endl;
+        cin >> namedars;
+        cout<<"Enter soal:"<<endl;
+        cin >> soal;
+        cout << "Enter tarikh shoroo:" << endl;
+        cin >> tarikh_shoroo;
+        cout << "Enter tarikh payan:" << endl;
+        cin >> tarikh_payan;
+        doroos[shomarehdars].addtaklif(namedars , soal ,tarikh_shoroo, tarikh_payan);
         break;
     case 6:
         cout << "Enter shomareh dars mored nazar" << endl;

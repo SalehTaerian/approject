@@ -1,6 +1,6 @@
 #include "dars.h"
 #include <iostream>
-#include"json.hpp"
+#include "json.hpp"
 using json = nlohmann::json;
 string taklif::start_getter()
 {
@@ -43,26 +43,67 @@ dars::dars(string darsname1, string darsinfo1, int zarfiat1) : darsname(darsname
         takliflist[i] = taklif();
     }
 }
-void dars::addtaklif()
+void dars::addtaklif(string namedars, string sharh_taklif, string tarikh_shoroo, string tarikh_payan)
 {
-    string shoroo, payan, sharh;
-    cout << "Enter tarikh shroo taklif:" << endl;
-    cin >> shoroo;
-    cout << "Enter tarikh payan taklif:" << endl;
-    cin >> payan;
-    cout << "Enter sharh taklif:" << endl;
-    cin >> sharh;
     if (taklifnum >= 10)
     {
         cout << "basseh digeh ah!! zarfiat por shodeh!" << endl;
     }
+    FILE *fp = fopen("doroos.json", "r");
+    json jsonarray;
+    if (fp != nullptr)
+    {
+        fseek(fp, 0, SEEK_END);
+        int fpsize = ftell(fp);
+        fseek(fp, 0, SEEK_SET);
+        if (fpsize > 0)
+        {
+            char *readfile = new char[fpsize + 1];
+            int sizefile = fread(readfile, 1, fpsize, fp);
+            readfile[sizefile] = '\0';
+            fclose(fp);
+            try
+            {
+                jsonarray = json::parse(readfile);
+            }
+            catch (const json::parse_error &e)
+            {
+                cout << "dobareh parse" << endl;
+                delete[] readfile;
+                return;
+            }
+            delete[] readfile;
+        }
+        else
+        {
+            jsonarray = json::array();
+            fclose(fp);
+        }
+    }
     else
     {
-        takliflist[taklifnum] = taklif(shoroo, payan, sharh);
-        taklifnum++;
+        exit(0);
     }
-    
-
+    int jsonsize = jsonarray.size();
+    for (int i = 0; i < jsonsize; i++)
+    {
+        if (jsonarray[i]["darsname"] == darsname)
+        {
+            jsonarray[i]["taklif"].push_back({
+                {"tarikh_shoroo", tarikh_shoroo},
+                {"tarikh_payan", tarikh_payan},
+                {"sharh_taklif", sharh_taklif},
+                {"nomreh_taklif", 0}
+            });
+            taklifnum++;
+            break;
+        }
+    }
+    string matnfile = jsonarray.dump(4);
+    fp = fopen("doroos.json", "w");
+    int size = matnfile.size();
+    fwrite(matnfile.c_str(), 1, size, fp);
+    fclose(fp);
 }
 void dars::setnomreh_taklif()
 {
@@ -71,7 +112,7 @@ void dars::setnomreh_taklif()
     cin >> nomreh;
     takliflist[taklifnum].nomreh_taklif = nomreh;
 }
-void dars::set_ettelaeieh(string darsname ,string news)
+void dars::set_ettelaeieh(string darsname, string news)
 {
     string ettel;
     cout << "Enter etteleieh:" << endl;
@@ -114,9 +155,9 @@ void dars::set_ettelaeieh(string darsname ,string news)
         exit(0);
     }
     int jsonsize = jsonarray.size();
-    for (int i = 0;i<jsonsize;i++)
+    for (int i = 0; i < jsonsize; i++)
     {
-        if(jsonarray[i]["darsname"] == darsname)
+        if (jsonarray[i]["darsname"] == darsname)
         {
             jsonarray[i]["ettelaeieh"].push_back(news);
             numettel++;
@@ -138,6 +179,52 @@ void dars::setnomrehdars()
     cout << "Enter nomreh" << endl;
     cin >> nomreh;
     nomrehdars = nomreh;
+    FILE *fp = fopen("doroos.json", "r");
+    json jsonarray;
+    if (fp != nullptr)
+    {
+        fseek(fp, 0, SEEK_END);
+        int fpsize = ftell(fp);
+        fseek(fp, 0, SEEK_SET);
+        if (fpsize > 0)
+        {
+            char *readfile = new char[fpsize + 1];
+            int sizefile = fread(readfile, 1, fpsize, fp);
+            readfile[sizefile] = '\0';
+            fclose(fp);
+            try
+            {
+                jsonarray = json::parse(readfile);
+            }
+            catch (const json::parse_error &e)
+            {
+                cout << "dobareh parse" << endl;
+                delete[] readfile;
+                return;
+            }
+            delete[] readfile;
+        }
+        else
+        {
+            jsonarray = json::array();
+            fclose(fp);
+        }
+    }
+    else
+    {
+        exit(0);
+    }
+    int jsonsize = jsonarray.size();
+    for (int i = 0; i < jsonsize; i++)
+    {
+        if (jsonarray[i]["darsname"] == darsname)
+        {
+            jsonarray[i]["nomreh"].push_back(news);
+            numettel++;
+            break;
+        }
+    }
+}
 }
 string *dars::get_ettelaeieh()
 {
