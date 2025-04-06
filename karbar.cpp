@@ -7,6 +7,8 @@
 #include"ostad.h"
 using namespace std;
 using json = nlohmann::json;
+karbar::karbar()
+{}
 karbar::karbar(string given_username, string given_password, string given_name, string given_lastname)
 {
     username = given_username;
@@ -97,7 +99,8 @@ void karbar::signin(int option)
                         }
                     }
                 }
-                
+                ostad ostadobj;
+                ostadobj.ostadcore();
             }
             // daneshjoo();
             break;
@@ -254,16 +257,6 @@ int userpassexist(string user, string pass)
     char *readfile = new char[filesize + 1];
     int sizefile = fread(readfile, 1, filesize, fp);
     readfile[sizefile] = '\0';
-    cout << "File Content: " << readfile << endl;
-    cout << "Last char before null termination: " << readfile[filesize - 1] << endl;
-    for (int i = filesize - 5; i < filesize; i++)
-    { // آخرین ۵ کاراکتر رو چک کن
-        cout << "Char at " << i << ": " << int(readfile[i]) << " (" << readfile[i] << ")" << endl;
-    }
-    if (readfile[filesize - 1] == '\r')
-    {
-        cout << "jjj";
-    }
     try
     {
         jsonobj = json::parse(readfile);

@@ -3,7 +3,7 @@
 #include "karbar.h"
 #include "dars.h"
 #include "admin.h"
-#include"ostad.h"
+#include "ostad.h"
 class ostad : public karbar
 {
 private:
@@ -12,7 +12,9 @@ private:
     void newdars();
     dars darsobj;
     void writeindarsfile(string filename);
+
 public:
+    ostad();
     friend void karbar::signin(int option);
 };
 #endif

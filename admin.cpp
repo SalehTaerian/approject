@@ -1,5 +1,7 @@
 #include "admin.h"
 #include "karbar.h"
+admin::admin()
+{}
 void admin::admincore()
 {
     int option;

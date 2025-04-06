@@ -1,6 +1,9 @@
 #include "ostad.h"
 #include <iostream>
 #include "admin.h"
+ostad::ostad()
+{
+}
 void ostad::ostadcore()
 {
 
@@ -9,36 +12,44 @@ void ostad::ostadcore()
     string soal, namedars;
     string esmdars, khabar, tarikh_shoroo, tarikh_payan;
     cout << "Welcom ostad!" << endl;
-    cout << "what do you want to do?" << endl
-         << "1-namayesh list daneshjooha" << endl
-         << "2-create new dars" << endl
-         << "3-sabt nomreh dars"
-         << endl;
-    cout << "4-create ettelaeieh" << endl
-         << "5-gharardadan taklif" << endl
-         << "6-sabt nomreh taklif" << endl;
-    cin >> option;
-    switch (option)
+    while (1)
     {
-    case 1:
-        // listdaneshjooha(access);
-        break;
-    case 2:
-        newdars();
-        break;
-    case 3:
-        cout << "Enter namedars mored nazar" << endl;
-        cin >> namedars;
-        darsobj.setnomrehdars();
-        break;
-    case 4:
-        darsobj.set_ettelaeieh();
-        break;
-    case 5:
-        darsobj.addtaklif();
-        break;
-    case 6:
-        darsobj.setnomreh_taklif();
+        cout << "what do you want to do?" << endl
+             << "1-namayesh list daneshjooha" << endl
+             << "2-create new dars" << endl
+             << "3-sabt nomreh dars"
+             << endl;
+        cout << "4-create ettelaeieh" << endl
+             << "5-gharardadan taklif" << endl
+             << "6-sabt nomreh taklif" << endl
+             << "7-exit" << endl;
+        cin >> option;
+        if (option == 7)
+        {
+            break;
+        }
+        switch (option)
+        {
+        case 1:
+            // listdaneshjooha(access);
+            break;
+        case 2:
+            newdars();
+            break;
+        case 3:
+            cout << "Enter namedars mored nazar" << endl;
+            cin >> namedars;
+            darsobj.setnomrehdars();
+            break;
+        case 4:
+            darsobj.set_ettelaeieh();
+            break;
+        case 5:
+            darsobj.addtaklif();
+            break;
+        case 6:
+            darsobj.setnomreh_taklif();
+        }
     }
 }
 void ostad::listdaneshjooha(admin access)
@@ -54,9 +65,11 @@ void ostad::newdars()
     cout << "Enter name dars:" << endl;
     cin >> name;
     cout << "Enter dars info:" << endl;
-    cin >> info;
+    cin.ignore();
+    getline(cin, info);
     cout << "Enter zarfiat dars:" << endl;
     cin >> zarfiatclass;
+    cin.ignore();
     darsobj = dars(name, info, zarfiatclass);
     creatingfile("doroos.json");
     writeindarsfile("doroos.json");

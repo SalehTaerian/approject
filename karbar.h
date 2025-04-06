@@ -12,6 +12,7 @@ private:
 
 public:
     karbar(string given_username, string givaen_password, string given_name, string given_lastname);
+    karbar();
     string usernamegetter();
     string passwordgetter();
     string namegetter();

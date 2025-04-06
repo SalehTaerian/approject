@@ -15,6 +15,7 @@ private:
     // static void showdoroosinfo();
 public:
     static void admincore();
+    admin();
 };
 void creatingfile(string filename);
 #endif

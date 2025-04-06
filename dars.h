@@ -31,6 +31,7 @@ private:
 
 public:
     int zarfiat;
+    dars();
     taklif takliflist[10];
     string namedars_getter();
     string infodars_getter();
