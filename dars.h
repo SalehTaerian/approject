@@ -10,10 +10,9 @@ private:
     string tarikh_shoroo;
     string tarikh_payan;
     string sharh;
-
 public:
-    float nomreh_taklif[10];
     taklif();
+    float nomreh_taklif;
     taklif(string tarikh_shoroo, string tarikh_payan, string sharh);
     string start_getter();
     string payan_getter();

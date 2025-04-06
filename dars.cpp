@@ -95,7 +95,7 @@ void dars::addtaklif()
         exit(0);
     }
     int jsonsize = jsonarray.size();
-    cout << "Enter namedars"<<endl;
+    cout << "Enter namedars" << endl;
     cin >> darsname;
     for (int i = 0; i < jsonsize; i++)
     {
@@ -117,8 +117,61 @@ void dars::addtaklif()
 }
 void dars::setnomreh_taklif()
 {
-    cout << "Enter shomareh teklif:" << endl;
-    // cout << "Enter nomreh taklif:" << endl;
+    int shomareh_taklif;
+    cout << "Enter name dars:" << endl;
+    cin >> darsname;
+    cout << "Enter shomareh taklif" << endl;
+    cin >> shomareh_taklif;
+    cout << "Enter nomreh taklif" << endl;
+    cin >> takliflist[shomareh_taklif].nomreh_taklif;
+    FILE *fp = fopen("doroos.json", "r");
+    json jsonarray;
+    if (fp != nullptr)
+    {
+        fseek(fp, 0, SEEK_END);
+        int fpsize = ftell(fp);
+        fseek(fp, 0, SEEK_SET);
+        if (fpsize > 0)
+        {
+            char *readfile = new char[fpsize + 1];
+            int sizefile = fread(readfile, 1, fpsize, fp);
+            readfile[sizefile] = '\0';
+            fclose(fp);
+            try
+            {
+                jsonarray = json::parse(readfile);
+            }
+            catch (const json::parse_error &e)
+            {
+                cout << "dobareh parse" << endl;
+                delete[] readfile;
+                return;
+            }
+            delete[] readfile;
+        }
+        else
+        {
+            jsonarray = json::array();
+            fclose(fp);
+        }
+    }
+    else
+    {
+        exit(0);
+    }
+    int jsonsize = jsonarray.size();
+    for (int i = 0; i < jsonsize; i++)
+    {
+        if (jsonarray[i]["darsname"] == darsname)
+        {
+            jsonarray[i]["taklif"][shomareh_taklif]["nomreh_taklif"] = takliflist[shomareh_taklif].nomreh_taklif;
+        }
+    }
+    string matnfile = jsonarray.dump(4);
+    fp = fopen("doroos.json", "w");
+    int size = matnfile.size();
+    fwrite(matnfile.c_str(), 1, size, fp);
+    fclose(fp);
 }
 void dars::set_ettelaeieh()
 {
