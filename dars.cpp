@@ -43,12 +43,18 @@ dars::dars(string darsname1, string darsinfo1, int zarfiat1) : darsname(darsname
         takliflist[i] = taklif();
     }
 }
-void dars::addtaklif(string namedars, string sharh_taklif, string tarikh_shoroo, string tarikh_payan)
+void dars::addtaklif()
 {
     if (taklifnum >= 10)
     {
         cout << "basseh digeh ah!! zarfiat por shodeh!" << endl;
     }
+    cout << "Enter soal mored nazar:" << endl;
+    cin >> takliflist[taklifnum].sharh;
+    cout << "Enter tarikh shoroo:" << endl;
+    cin >> takliflist[taklifnum].tarikh_shoroo;
+    cout << "Enter tarikh payan:" << endl;
+    cin >> takliflist[taklifnum].tarikh_payan;
     FILE *fp = fopen("doroos.json", "r");
     json jsonarray;
     if (fp != nullptr)
@@ -90,9 +96,9 @@ void dars::addtaklif(string namedars, string sharh_taklif, string tarikh_shoroo,
         if (jsonarray[i]["darsname"] == darsname)
         {
             jsonarray[i]["taklif"].push_back({
-                {"tarikh_shoroo", tarikh_shoroo},
-                {"tarikh_payan", tarikh_payan},
-                {"sharh_taklif", sharh_taklif},
+                {"tarikh_shoroo", takliflist[taklifnum].tarikh_shoroo},
+                {"tarikh_payan", takliflist[taklifnum].tarikh_payan},
+                {"sharh_taklif", takliflist[taklifnum].sharh},
                 {"nomreh_taklif", 0}
             });
             taklifnum++;
@@ -107,17 +113,13 @@ void dars::addtaklif(string namedars, string sharh_taklif, string tarikh_shoroo,
 }
 void dars::setnomreh_taklif()
 {
-    float nomreh;
-    cout << "Enter nomreh:" << endl;
-    cin >> nomreh;
-    takliflist[taklifnum].nomreh_taklif = nomreh;
+    cout<<"Enter shomareh teklif:"<<endl;
+    // cout << "Enter nomreh taklif:" << endl;
 }
-void dars::set_ettelaeieh(string darsname, string news)
+void dars::set_ettelaeieh()
 {
-    string ettel;
     cout << "Enter etteleieh:" << endl;
-    cin >> ettel;
-    ettelaeieh[numettel] = ettel;
+    cin >> ettelaeieh[numettel];
     numettel++;
     FILE *fp = fopen("doroos.json", "r");
     json jsonarray;
@@ -159,11 +161,14 @@ void dars::set_ettelaeieh(string darsname, string news)
     {
         if (jsonarray[i]["darsname"] == darsname)
         {
-            jsonarray[i]["ettelaeieh"].push_back(news);
-            numettel++;
+            jsonarray[i]["ettelaeieh"].push_back(ettelaeieh[numettel-1]);
             break;
         }
     }
+    fp =fopen("doroos.json" , "w");
+    string matnfile = jsonarray.dump(4);
+    fwrite(matnfile.c_str(), 1, matnfile.size(), fp);
+    fclose(fp);
 }
 void dars::show_ettel()
 {
@@ -175,10 +180,8 @@ void dars::show_ettel()
 }
 void dars::setnomrehdars()
 {
-    float nomreh;
     cout << "Enter nomreh" << endl;
-    cin >> nomreh;
-    nomrehdars = nomreh;
+    cin >> nomrehdars;
     FILE *fp = fopen("doroos.json", "r");
     json jsonarray;
     if (fp != nullptr)
@@ -219,12 +222,15 @@ void dars::setnomrehdars()
     {
         if (jsonarray[i]["darsname"] == darsname)
         {
-            jsonarray[i]["nomreh"].push_back(news);
-            numettel++;
+            jsonarray[i]["nomrehdars"] = nomrehdars;
             break;
         }
     }
-}
+    fp = fopen("doroos.json" , "w");
+    string matnfile = jsonarray.dump(4);
+    int size = matnfile.size();
+    fwrite(matnfile.c_str(), 1, size, fp);
+    fclose(fp);
 }
 string *dars::get_ettelaeieh()
 {

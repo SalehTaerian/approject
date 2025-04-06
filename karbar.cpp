@@ -4,6 +4,7 @@
 #include <iostream>
 #include "json.hpp"
 #include "admin.h"
+#include"ostad.h"
 using namespace std;
 using json = nlohmann::json;
 karbar::karbar(string given_username, string given_password, string given_name, string given_lastname)
@@ -60,7 +61,7 @@ void karbar::signin(int option)
             cin >> password;
             if (username == "Admin" && password == "Admin")
             {
-                // admin::admincore();
+                admin::admincore();
             }
             else
             {
@@ -78,6 +79,7 @@ void karbar::signin(int option)
                     else
                         break;
                 }
+
             }
             if (panel == 2)
             {
@@ -95,7 +97,7 @@ void karbar::signin(int option)
                         }
                     }
                 }
-                // ostad();
+                
             }
             // daneshjoo();
             break;

@@ -5,9 +5,9 @@ void ostad::ostadcore()
 {
 
     int option;
-    int shomarehdars;
-    string soal , namedars;
-    string esmdars, khabar ,tarikh_shoroo ,tarikh_payan;
+    float nomreh;
+    string soal, namedars;
+    string esmdars, khabar, tarikh_shoroo, tarikh_payan;
     cout << "Welcom ostad!" << endl;
     cout << "what do you want to do?" << endl
          << "1-namayesh list daneshjooha" << endl
@@ -27,36 +27,18 @@ void ostad::ostadcore()
         newdars();
         break;
     case 3:
-        cout << "Enter shomareh dars mored nazar" << endl;
-        cin >> shomarehdars;
-        doroos[shomarehdars].setnomrehdars();
+        cout << "Enter namedars mored nazar" << endl;
+        cin >> namedars;
+        darsobj.setnomrehdars();
         break;
     case 4:
-        cout << "Enter shomareh dars mored nazar" << endl;
-        cin >> shomarehdars;
-        cout << "Enter name dars:" << endl;
-        cin >> esmdars;
-        cout << "Enter ettelaeieh" << endl;
-        cin >> khabar;
-        doroos[shomarehdars].set_ettelaeieh(esmdars, khabar);
+        darsobj.set_ettelaeieh();
         break;
     case 5:
-        cout << "Enter shomareh dars mored nazar" << endl;
-        cin >> shomarehdars;
-        cout << "Enter namedars barayeh ettelaeieh:" << endl;
-        cin >> namedars;
-        cout<<"Enter soal:"<<endl;
-        cin >> soal;
-        cout << "Enter tarikh shoroo:" << endl;
-        cin >> tarikh_shoroo;
-        cout << "Enter tarikh payan:" << endl;
-        cin >> tarikh_payan;
-        doroos[shomarehdars].addtaklif(namedars , soal ,tarikh_shoroo, tarikh_payan);
+        darsobj.addtaklif();
         break;
     case 6:
-        cout << "Enter shomareh dars mored nazar" << endl;
-        cin >> shomarehdars;
-        doroos[shomarehdars].setnomreh_taklif();
+        darsobj.setnomreh_taklif();
     }
 }
 void ostad::listdaneshjooha(admin access)
@@ -75,8 +57,7 @@ void ostad::newdars()
     cin >> info;
     cout << "Enter zarfiat dars:" << endl;
     cin >> zarfiatclass;
-    doroos[darscounter] = dars(name, info, zarfiatclass);
-    darscounter++;
+    darsobj = dars(name, info, zarfiatclass);
     creatingfile("doroos.json");
     writeindarsfile("doroos.json");
 }
@@ -117,9 +98,10 @@ void ostad::writeindarsfile(string filename)
     {
         jsonarray = json::array();
     }
-    jsonarray.push_back({{"darsname", doroos[darscounter].namedars_getter()},
-                         {"darsinfo", doroos[darscounter].infodars_getter()},
-                         {"zarfiat", doroos[darscounter].zarfiat},
+    jsonarray.push_back({{"darsname", darsobj.namedars_getter()},
+                         {"darsinfo", darsobj.infodars_getter()},
+                         {"nomrehdars", darsobj.nomrehdarsgetter()},
+                         {"zarfiat", darsobj.zarfiat},
                          {"ettelaeieh", json::array()},
                          {"taklif", json::array()}});
     fp = fopen(filename.c_str(), "w");

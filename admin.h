@@ -12,7 +12,7 @@ private:
     static void virayeshinfokarbar();
     static void hazfkarbar();
     static void restorekarbar();
-    static void showdoroosinfo();
+    // static void showdoroosinfo();
 public:
     static void admincore();
 };

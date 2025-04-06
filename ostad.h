@@ -3,14 +3,16 @@
 #include "karbar.h"
 #include "dars.h"
 #include "admin.h"
+#include"ostad.h"
 class ostad : public karbar
 {
 private:
-    int darscounter = 0;
     void listdaneshjooha(admin access);
     void ostadcore();
     void newdars();
-    dars doroos[10];
+    dars darsobj;
     void writeindarsfile(string filename);
+public:
+    friend void karbar::signin(int option);
 };
 #endif

@@ -3,6 +3,7 @@
 #include "daneshjoo.cpp"
 #include "admin.cpp"
 #include "ostad.cpp"
+#include"dars.cpp"
 #include "mainfunc.cpp"
 using namespace std;
 int main()

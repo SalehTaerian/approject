@@ -21,7 +21,7 @@ void admin::admincore()
         showkarbaranlist();
         break;
     case 3:
-        // virayeshinfokarbar();
+        virayeshinfokarbar();
         break;
     case 4:
         hazfkarbar();
@@ -30,7 +30,7 @@ void admin::admincore()
         restorekarbar();
         break;
     case 6:
-        showdoroosinfo();
+        // showdoroosinfo();
         break;
     }
 }
