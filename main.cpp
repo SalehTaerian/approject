@@ -4,8 +4,8 @@
 #include "admin.cpp"
 #include "ostad.cpp"
 #include "dars.cpp"
-#include "mainfunc.cpp"
-#include"daneshjoo.cpp"
+// #include "mainfunc.cpp"
+// #include"daneshjoo.cpp"
 using namespace std;
 int main()
 {
@@ -15,10 +15,12 @@ int main()
     cout << "1-signin" << endl;
     cout << "2-signup" << endl;
     cin >> option;
-    karbar::signin(option);
+    karbar karbartmp;
+    karbartmp.signin(option);
+    //ظزفیت کم نکرد
     if (option == 2)
     {
-        karbar::signin(2);
+        karbartmp.signin(2);
     }
     // مشکل پارس کردن سر اخرین حرف فایل جیسون که علامت سوال نشون می ده
 }

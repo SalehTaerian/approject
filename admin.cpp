@@ -38,7 +38,8 @@ void admin::admincore()
 }
 void admin::addnewdaneshjoo()
 {
-    signin(2);
+    karbar tmp;
+    tmp.signin(2);
 }
 void admin::showkarbaranlist()
 {
@@ -242,5 +243,9 @@ void creatingfile(string filename)
         fclose(fp);
     }
 }
-// void admin::showdoroosinfo();
+void admin::showdoroosinfo()
+{
+    json jsonarray = parsejson("doroos.json");
+    cout << jsonarray<<endl;
+}
 // با رابطع بین کلاس ها بعد تغریف توی کلاس استاذ باید بیای توی این قسمت

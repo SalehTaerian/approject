@@ -1,6 +1,8 @@
 #include "daneshjoo.h"
 using namespace std;
 using json = nlohmann::json;
+daneshjoo::daneshjoo(string username , string password , string name , string lastname):karbar(username ,password , name ,lastname){}
+
 void daneshjoo::daneshjoocore()
 {
     int option;
@@ -140,90 +142,42 @@ void daneshjoo::entekhabvahed()
     cin >> darsname;
     FILE *fp = fopen("doroos.json", "r");
     json jsonarray;
-    if (fp != nullptr)
-    {
-        fseek(fp, 0, SEEK_END);
-        int fpsize = ftell(fp);
-        fseek(fp, 0, SEEK_SET);
-        if (fpsize > 0)
-        {
-            char *readfile = new char[fpsize + 1];
-            int sizefile = fread(readfile, 1, fpsize, fp);
-            readfile[sizefile] = '\0';
-            fclose(fp);
-            try
-            {
-                jsonarray = json::parse(readfile);
-            }
-            catch (const json::parse_error &e)
-            {
-                cout << "dobareh parse" << endl;
-                delete[] readfile;
-                return;
-            }
-            delete[] readfile;
-        }
-        else
-        {
-            jsonarray = json::array();
-            fclose(fp);
-        }
-    }
-    else
-    {
-        exit(0);
-    }
+    jsonarray= parsejson("doroos.json");
     int jsonsize = jsonarray.size();
     for (int i = 0; i < jsonsize; i++)
     {
-        if (jsonarray[i]["darname"] == darsname)
+        if (jsonarray[i]["darsname"] == darsname)
         {
             if (jsonarray[i]["zarfiat"] > 0)
             {
-                jsonarray[i]["zarfiat"] = jsonarray[i]["zarfiat"] - 1;
+                jsonarray[i]["zarfiat"] = (int)jsonarray[i]["zarfiat"] - 1;
                 creatingfile("daneshjoo.json");
-                FILE *fp = fopen("daneshjoo.json", "r");
-                json jsonarray;
-                if (fp != nullptr)
+                json jsobj = parsejson("daneshjoo.json");
+                int jsarrsize = jsobj.size();
+                int flag = 0;
+                for (int u = 0; u < jsarrsize; u++)
                 {
-                    fseek(fp, 0, SEEK_END);
-                    int fpsize = ftell(fp);
-                    fseek(fp, 0, SEEK_SET);
-                    if (fpsize > 0)
+                    if (jsobj[u]["username"] == usernamegetter())
                     {
-                        char *readfile = new char[fpsize + 1];
-                        int sizefile = fread(readfile, 1, fpsize, fp);
-                        readfile[sizefile] = '\0';
-                        fclose(fp);
-                        try
-                        {
-                            jsonarray = json::parse(readfile);
-                        }
-                        catch (const json::parse_error &e)
-                        {
-                            cout << "dobareh parse" << endl;
-                            delete[] readfile;
-                            return;
-                        }
-                        delete[] readfile;
-                    }
-                    else
-                    {
-                        jsonarray = json::array();
-                        fclose(fp);
+                        flag = 1;
                     }
                 }
-                else
+                if (!flag)
                 {
-                    exit(0);
-                    //  اگه مشکل داره احتمالا به خاطر اینه خط بالا رو عوض کردم قبلا خط پایین بوده
-                    //  jsonarray = json::array();
+                    jsobj.push_back({{"username", usernamegetter()},
+                                         {"doroos", json::array()}});
                 }
-                jsonarray.push_back({{"username", usernamegetter()},
-                                     {"doroos", json::array()}});
-                jsonarray.push_back({"doroos", darsname});
+                for (int u = 0; u < jsarrsize; u++)
+                {
+                    if (jsobj[u]["username"] == usernamegetter())
+                    {
+                        int tedaddars;
+                        tedaddars = jsobj[u]["doroos"].size();
+                        jsobj[u]["doroos"][tedaddars] = darsname;
+                    }
+                }
                 fp = fopen("daneshjoo.json", "w");
-                string info = jsonarray.dump(4);
+                string info = jsobj.dump(4);
                 fwrite(info.c_str(), 1, info.size(), fp);
                 fclose(fp);
             }
@@ -252,11 +206,11 @@ void daneshjoo::moshakhasatdars()
             for (int j = 0; j < tedaddars; j++)
             {
                 esmdars = jsobj[i]["doroos"][j];
-                for (int k = 0; k < size_darsjs;k++)
+                for (int k = 0; k < size_darsjs; k++)
                 {
-                    if (jsobjdoroos[k]["darsname"]==esmdars)
+                    if (jsobjdoroos[k]["darsname"] == esmdars)
                     {
-                        cout << jsobjdoroos[k]<<endl;
+                        cout << jsobjdoroos[k] << endl;
                     }
                 }
             }
@@ -347,14 +301,13 @@ void daneshjoo::nomarattakalif()
     int jsonsize = jsonarray.size();
     for (int i = 0; i < jsonsize; i++)
     {
-        cout << "nomarat takalif dars " << jsonarray[i]["darname"] << endl;
         int taklifsize = jsonarray[i]["taklif"].size();
-        for (int j = 0; j < taklifsize; i++)
+        for (int j = 0; j < taklifsize; j++)
         {
             cout << jsonarray[i]["taklif"][j]["nomreh_taklif"] << endl;
         }
     }
 }
-void daneshjoo::nomrehostad()
-{
-}
+// void daneshjoo::nomrehostad()
+// {
+// }

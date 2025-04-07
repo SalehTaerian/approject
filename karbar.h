@@ -2,6 +2,8 @@
 #define KARBAR_H
 #include <iostream>
 using namespace std;
+#include"json.hpp"
+using json = nlohmann::json;
 class karbar
 {
 private:
@@ -17,7 +19,7 @@ public:
     string passwordgetter();
     string namegetter();
     string lastnamegetter();
-    static void signin(int option);
+    void signin(int option);
     static void writeinfile(karbar user1 ,  string filename);
     json parsejson(string filename);
 };

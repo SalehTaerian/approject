@@ -36,7 +36,6 @@ string karbar::lastnamegetter()
 void karbar::signin(int option)
 {
     int panel, ramzshab, flag = 0;
-    string username, password, name, lastname;
     cout << "choose panel:" << endl
          << "1-daneshjoo" << endl
          << "2-ostad" << endl;
@@ -64,7 +63,8 @@ void karbar::signin(int option)
             cin >> password;
             if (username == "Admin" && password == "Admin")
             {
-                admin::admincore();
+                admin adminobj;
+                adminobj.admincore();
             }
             else
             {
@@ -103,7 +103,7 @@ void karbar::signin(int option)
                 ostad ostadobj;
                 ostadobj.ostadcore();
             }
-            daneshjoo daneshjooobj;
+            daneshjoo daneshjooobj(username , password, name ,lastname);
             daneshjooobj.daneshjoocore();
             break;
         }
@@ -309,7 +309,7 @@ json karbar::parsejson(string filename)
             {
                 cout << "dobareh parse" << endl;
                 delete[] readfile;
-                return;
+                exit(0);
             }
             delete[] readfile;
         }
