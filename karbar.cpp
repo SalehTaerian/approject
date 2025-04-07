@@ -284,4 +284,43 @@ int userpassexist(string user, string pass)
     fclose(fp);
     return 0;
 }
+json karbar::parsejson(string filename)
+{
+    FILE *fp = fopen(filename.c_str(), "r");
+    json jsonarray;
+    if (fp != nullptr)
+    {
+        fseek(fp, 0, SEEK_END);
+        int fpsize = ftell(fp);
+        fseek(fp, 0, SEEK_SET);
+        if (fpsize > 0)
+        {
+            char *readfile = new char[fpsize + 1];
+            int sizefile = fread(readfile, 1, fpsize, fp);
+            readfile[sizefile] = '\0';
+            fclose(fp);
+            try
+            {
+                jsonarray = json::parse(readfile);
+            }
+            catch (const json::parse_error &e)
+            {
+                cout << "dobareh parse" << endl;
+                delete[] readfile;
+                return;
+            }
+            delete[] readfile;
+        }
+        else
+        {
+            jsonarray = json::array();
+            fclose(fp);
+        }
+    }
+    else
+    {
+        exit(0);
+    }
+    return jsonarray;
+}
 #endif

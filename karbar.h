@@ -19,6 +19,7 @@ public:
     string lastnamegetter();
     static void signin(int option);
     static void writeinfile(karbar user1 ,  string filename);
+    json parsejson(string filename);
 };
 int usernametekrari(string newusername);
 int userpassexist(string user, string pass);
