@@ -1,3 +1,5 @@
+#ifndef DANESHJOO_H
+#define DANESHJOO_H
 #include <iostream>
 #include "json.hpp"
 #include "karbar.h"
@@ -16,3 +18,4 @@ public:
     void nomarattakalif();
     void nomrehostad();
 };
+#endif

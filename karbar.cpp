@@ -5,6 +5,7 @@
 #include "json.hpp"
 #include "admin.h"
 #include"ostad.h"
+#include"daneshjoo.h"
 using namespace std;
 using json = nlohmann::json;
 karbar::karbar()
@@ -102,7 +103,8 @@ void karbar::signin(int option)
                 ostad ostadobj;
                 ostadobj.ostadcore();
             }
-            // daneshjoo();
+            daneshjoo daneshjooobj;
+            daneshjooobj.daneshjoocore();
             break;
         }
         else if (option == 2)

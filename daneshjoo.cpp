@@ -219,10 +219,8 @@ void daneshjoo::entekhabvahed()
                     //  اگه مشکل داره احتمالا به خاطر اینه خط بالا رو عوض کردم قبلا خط پایین بوده
                     //  jsonarray = json::array();
                 }
-                jsonarray.push_back({
-                    {"username", usernamegetter()},
-                    {"doroos" ,json::array()}
-                });
+                jsonarray.push_back({{"username", usernamegetter()},
+                                     {"doroos", json::array()}});
                 jsonarray.push_back({"doroos", darsname});
                 fp = fopen("daneshjoo.json", "w");
                 string info = jsonarray.dump(4);
@@ -239,7 +237,31 @@ void daneshjoo::entekhabvahed()
 }
 void daneshjoo::moshakhasatdars()
 {
-    
+    json jsobj;
+    string esmdars;
+    jsobj = parsejson("daneshjoo.json");
+    json jsobjdoroos;
+    jsobjdoroos = parsejson("doroos.json");
+    int jssize = jsobj.size();
+    int size_darsjs = jsobjdoroos.size();
+    for (int i = 0; i < jssize; i++)
+    {
+        if (jsobj[i]["username"] == usernamegetter())
+        {
+            int tedaddars = jsobj[i]["doroos"].size();
+            for (int j = 0; j < tedaddars; j++)
+            {
+                esmdars = jsobj[i]["doroos"][j];
+                for (int k = 0; k < size_darsjs;k++)
+                {
+                    if (jsobjdoroos[k]["darsname"]==esmdars)
+                    {
+                        cout << jsobjdoroos[k]<<endl;
+                    }
+                }
+            }
+        }
+    }
 }
 void daneshjoo::showkhabar()
 {

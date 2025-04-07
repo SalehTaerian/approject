@@ -5,6 +5,7 @@
 #include "ostad.cpp"
 #include "dars.cpp"
 #include "mainfunc.cpp"
+#include"daneshjoo.cpp"
 using namespace std;
 int main()
 {
