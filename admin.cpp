@@ -173,7 +173,7 @@ void admin::hazfkarbar()
         if (jsobj[i]["username"] == username)
         {
             karbar user1(jsobj[i]["username"], jsobj[i]["password"], jsobj[i]["name"], jsobj[i]["lastname"]);
-            karbar::writeinfile(user1, "restore.json");
+            karbar::writeinfile(user1, "restore.json" ,(int)jsobj[i]["paneloption"]);
             jsobj.erase(jsobj.begin() + i);
             flag = 1;
             break;
@@ -220,7 +220,7 @@ void admin::restorekarbar()
     for (int i = 0; i <  jsobj.size(); i++)
     {
         karbar user1(jsobj[i]["username"], jsobj[i]["password"], jsobj[i]["name"], jsobj[i]["lastname"]);
-        karbar::writeinfile(user1, "info.json");
+        karbar::writeinfile(user1, "info.json" ,(int)jsobj[i]["paneloption"]);
         jsobj.erase(jsobj.begin() + i);
     }
     fclose(fp);

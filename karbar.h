@@ -20,7 +20,7 @@ public:
     string namegetter();
     string lastnamegetter();
     void signin(int option);
-    static void writeinfile(karbar user1 ,  string filename);
+    static void writeinfile(karbar user1 ,  string filename , int panel);
     json parsejson(string filename);
 };
 int usernametekrari(string newusername);

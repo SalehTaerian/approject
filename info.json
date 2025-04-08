@@ -1,19 +1,22 @@
 [
     {
-        "lastname": "azari",
-        "name": "maryam",
-        "password": "maryam1973",
-        "username": "maryam"
+        "lastname": "Taerian",
+        "name": "saleh",
+        "paneloption": 1,
+        "password": "saleh1385",
+        "username": "saly"
     },
     {
-        "lastname": "taerian",
+        "lastname": "Taerian",
         "name": "sobhan",
+        "paneloption": 1,
         "password": "sobhan1375",
         "username": "sobhan"
     },
     {
         "lastname": "fanian",
         "name": "ali",
+        "paneloption": 2,
         "password": "fanian",
         "username": "ali"
     }

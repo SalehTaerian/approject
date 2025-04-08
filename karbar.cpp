@@ -4,12 +4,13 @@
 #include <iostream>
 #include "json.hpp"
 #include "admin.h"
-#include"ostad.h"
-#include"daneshjoo.h"
+#include "ostad.h"
+#include "daneshjoo.h"
 using namespace std;
 using json = nlohmann::json;
 karbar::karbar()
-{}
+{
+}
 karbar::karbar(string given_username, string given_password, string given_name, string given_lastname)
 {
     username = given_username;
@@ -82,7 +83,6 @@ void karbar::signin(int option)
                     else
                         break;
                 }
-
             }
             if (panel == 2)
             {
@@ -103,7 +103,7 @@ void karbar::signin(int option)
                 ostad ostadobj;
                 ostadobj.ostadcore();
             }
-            daneshjoo daneshjooobj(username , password, name ,lastname);
+            daneshjoo daneshjooobj(username, password, name, lastname);
             daneshjooobj.daneshjoocore();
             break;
         }
@@ -149,7 +149,7 @@ void karbar::signin(int option)
                 }
             }
             karbar user1(username, password, name, lastname);
-            writeinfile(user1, "info.json");
+            writeinfile(user1, "info.json" ,panel);
             break;
         }
         else
@@ -160,7 +160,7 @@ void karbar::signin(int option)
         }
     }
 }
-void karbar::writeinfile(karbar user1, string filename)
+void karbar::writeinfile(karbar user1, string filename ,int panel)
 {
     FILE *fp = fopen(filename.c_str(), "r");
     json jsonarray;
@@ -202,7 +202,8 @@ void karbar::writeinfile(karbar user1, string filename)
     jsonarray.push_back({{"name", user1.namegetter()},
                          {"lastname", user1.lastnamegetter()},
                          {"username", user1.usernamegetter()},
-                         {"password", user1.passwordgetter()}});
+                         {"password", user1.passwordgetter()},
+                         {"paneloption", panel}});
     fp = fopen(filename.c_str(), "w");
     string info = jsonarray.dump(4);
     fwrite(info.c_str(), 1, info.size(), fp);
@@ -212,23 +213,8 @@ int usernametekrari(string newusername)
 {
     json jsonobj;
     int flag = 0;
-    FILE *fp = fopen("info.json", "r");
-    fseek(fp, 0, SEEK_END);
-    int filesize = ftell(fp);
-    fseek(fp, 0, SEEK_SET);
-    char *readfile = new char[filesize + 1];
-    int sizefile = fread(readfile, 1, filesize, fp);
-    readfile[sizefile] = '\0';
-    try
-    {
-        jsonobj = json::parse(readfile);
-    }
-    catch (const json::parse_error &e)
-    {
-        cout << "dobareh parse" << endl;
-        delete[] readfile;
-        return -1;
-    }
+    karbar usertmp;
+    jsonobj = usertmp.parsejson("info.json");
     int sizeobj = jsonobj.size();
 
     for (int i = 0; i < sizeobj; i++)
@@ -238,8 +224,6 @@ int usernametekrari(string newusername)
             flag = 1;
         }
     }
-    delete[] readfile;
-    fclose(fp);
     if (flag)
         return 1;
     return 0;
@@ -247,29 +231,8 @@ int usernametekrari(string newusername)
 int userpassexist(string user, string pass)
 {
     json jsonobj;
-    FILE *fp = fopen("info.json", "r");
-    fseek(fp, 0, SEEK_END);
-    int filesize = ftell(fp);
-    fseek(fp, 0, SEEK_SET);
-    if (filesize == 0)
-    {
-        fclose(fp);
-        return 0;
-    }
-    char *readfile = new char[filesize + 1];
-    int sizefile = fread(readfile, 1, filesize, fp);
-    readfile[sizefile] = '\0';
-    try
-    {
-        jsonobj = json::parse(readfile);
-    }
-    catch (const json::parse_error &e)
-    {
-        cout << "dobareh parse" << endl;
-        delete[] readfile;
-        fclose(fp);
-        return 0;
-    }
+    karbar usertmp;
+    jsonobj = usertmp.parsejson("info.json");
     int membersize = jsonobj.size();
     for (int i = 0; i < membersize; i++)
     {
@@ -277,13 +240,10 @@ int userpassexist(string user, string pass)
         {
             if (pass == jsonobj[i]["password"])
             {
-                fclose(fp);
-                delete[] readfile;
                 return 1;
             }
         }
     }
-    fclose(fp);
     return 0;
 }
 json karbar::parsejson(string filename)

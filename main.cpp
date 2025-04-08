@@ -20,7 +20,7 @@ int main()
     //ظزفیت کم نکرد
     if (option == 2)
     {
-        karbartmp.signin(2);
+        karbartmp.signin(1);
     }
     // مشکل پارس کردن سر اخرین حرف فایل جیسون که علامت سوال نشون می ده
 }
