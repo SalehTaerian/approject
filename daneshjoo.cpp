@@ -98,23 +98,20 @@ void daneshjoo::entekhabvahed()
                 {
                     if (jsobj[u]["username"] == usernamegetter())
                     {
-                        flag = 1;
+                        if (jsobj[u]["dars"] == darsname)
+                        {
+                            flag = 1;
+                        }
                     }
                 }
                 if (!flag)
                 {
                     jsobj.push_back({{"username", usernamegetter()},
-                                     {"doroos", json::array()}});
-                }
-                for (int u = 0; u < jsarrsize+1; u++)
-                {
-                    if (jsobj[u]["username"] == usernamegetter())
-                    {
-                        int tedaddars;
-                        tedaddars = jsobj[u]["doroos"].size();
-                        jsobj[u]["doroos"][tedaddars] = darsname;
-                        break;
-                    }
+                                     {"dars", darsname},
+                                     {"taklif", json::array()},
+                                     {"nomrehdars", 0},
+                                     {"nomreh_taklif", json::array()},
+                                     {"nomreh_ostad", json::array()}});
                 }
                 fp = fopen("daneshjoo.json", "w");
                 string info = jsobj.dump(4);
@@ -214,6 +211,58 @@ void daneshjoo::nomarattakalif()
         }
     }
 }
-// void daneshjoo::nomrehostad()
-// {
-// }
+void daneshjoo::tahviltaklif()
+{
+    static int taklnum = 0;
+    string esmdars;
+    json jsobj;
+    jsobj = parsejson("daneshjoo.json");
+    cout << "Enter namedars:" << endl;
+    cin >> esmdars;
+    cout << "Enter pasokh taklif:(be tartib vared kardan)" << endl;
+    cin >> taklif;
+    int jssize = jsobj.size();
+    for (int i = 0; i < jssize; i++)
+    {
+        if (jsobj[i]["username"] == usernamegetter())
+        {
+            if (jsobj[i]["dars"] == esmdars)
+            {
+                jsobj[i]["taklif"][taklnum] = taklif;
+            }
+        }
+    }
+    string matnfile = jsobj.dump(4);
+    int filesize = matnfile.size();
+    FILE *fp;
+    fp = fopen("daneshjoo.json", "w");
+    fwrite(matnfile.c_str(), 1, filesize, fp);
+    fclose(fp);
+}
+void daneshjoo::nomrehostad()
+{
+    json jsobj;
+    string esmdars;
+    float nomreh;
+    jsobj = parsejson("daneshoo.json");
+    cout << "be ostad kodoom dars mikhay nmreh bedi?" << endl;
+    cin >> esmdars;
+    cout << "Enter nomreh ostad" << endl;
+    cin >> nomreh;
+    int jssize = jsobj.size();
+    for (int i = 0; i < jssize; i++)
+    {
+        if (jsobj[i]["username"] == usernamegetter())
+        {
+            if (jsobj[i]["dars"] == esmdars)
+            {
+                jsobj[i]["nomreh_ostad"] = nomreh;
+            }
+        }
+    }
+    FILE *fp = fopen("daneshjoo.json" , "w");
+    string matnfile = jsobj.dump(4);
+    int filesize = matnfile.size();
+    fwrite(matnfile.c_str() ,1 ,filesize ,fp);
+    fclose(fp);
+}

@@ -8,6 +8,7 @@ using namespace std;
 using json = nlohmann::json;
 class daneshjoo : public karbar
 {
+    string taklif;
 public:
     void daneshjoocore();
     void showlistdoroos();
@@ -18,5 +19,6 @@ public:
     void nomarattakalif();
     daneshjoo(string username, string password, string name, string lastname);
     void nomrehostad();
+    void tahviltaklif();
 };
 #endif
