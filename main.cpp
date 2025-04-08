@@ -4,8 +4,6 @@
 #include "admin.cpp"
 #include "ostad.cpp"
 #include "dars.cpp"
-// #include "mainfunc.cpp"
-// #include"daneshjoo.cpp"
 using namespace std;
 int main()
 {
@@ -22,5 +20,4 @@ int main()
     {
         karbartmp.signin(1);
     }
-    // مشکل پارس کردن سر اخرین حرف فایل جیسون که علامت سوال نشون می ده
 }

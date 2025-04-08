@@ -17,6 +17,6 @@ public:
     void showkhabar();
     void nomarattakalif();
     daneshjoo(string username, string password, string name, string lastname);
-    // void nomrehostad();
+    void nomrehostad();
 };
 #endif
