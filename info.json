@@ -19,5 +19,26 @@
         "paneloption": 2,
         "password": "fanian",
         "username": "ali"
+    },
+    {
+        "lastname": "soltani",
+        "name": "sima",
+        "paneloption": 2,
+        "password": "soltani",
+        "username": "sima"
+    },
+    {
+        "lastname": "azary",
+        "name": "maryam",
+        "paneloption": 1,
+        "password": "azary",
+        "username": "azar"
+    },
+    {
+        "lastname": "nik",
+        "name": "sajedeh",
+        "paneloption": 2,
+        "password": "nik",
+        "username": "sajedeh"
     }
 ]
