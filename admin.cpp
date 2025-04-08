@@ -1,39 +1,48 @@
 #include "admin.h"
 #include "karbar.h"
 admin::admin()
-{}
+{
+}
 void admin::admincore()
 {
-    int option;
     cout << "welcome boss!" << endl;
-    cout << "what do you want to do?" << endl
-         << "1-add new daneshjoo" << endl
-         << "2-show list karbaran" << endl;
-    cout << "3-virayesh karbaran" << endl
-         << "4-hazf karbar" << endl
-         << "5-restore karbar" << endl;
-    cout << "6-show ettelaat doroos" << endl;
-    cin >> option;
-    switch (option)
+    while (1)
     {
-    case 1:
-        addnewdaneshjoo();
-        break;
-    case 2:
-        showkarbaranlist();
-        break;
-    case 3:
-        virayeshinfokarbar();
-        break;
-    case 4:
-        hazfkarbar();
-        break;
-    case 5:
-        restorekarbar();
-        break;
-    case 6:
-        // showdoroosinfo();
-        break;
+        int option;
+        cout << "what do you want to do?" << endl
+             << "1-add new ostad or daneshjoo" << endl
+             << "2-show list karbaran" << endl;
+        cout << "3-virayesh karbaran" << endl
+             << "4-hazf karbar" << endl
+             << "5-restore karbar" << endl;
+        cout << "6-show ettelaat doroos" << endl
+             << "7-exit" << endl;
+        cin >> option;
+        if (option == 7)
+        {
+            exit(0);
+        }
+        switch (option)
+        {
+        case 1:
+            addnewdaneshjoo();
+            break;
+        case 2:
+            showkarbaranlist();
+            break;
+        case 3:
+            virayeshinfokarbar();
+            break;
+        case 4:
+            hazfkarbar();
+            break;
+        case 5:
+            restorekarbar();
+            break;
+        case 6:
+            showdoroosinfo();
+            break;
+        }
     }
 }
 void admin::addnewdaneshjoo()
@@ -50,7 +59,7 @@ void admin::showkarbaranlist()
     int filesize = ftell(fp);
     fseek(fp, 0, SEEK_SET);
     char *readfile = new char[filesize + 1];
-    int sizefile =fread(readfile, 1, filesize, fp);
+    int sizefile = fread(readfile, 1, filesize, fp);
     readfile[sizefile] = '\0';
     try
     {
@@ -137,7 +146,7 @@ void admin::virayeshinfokarbar()
     }
     fp = fopen("info.json", "w");
     string changedinfo = jsobj.dump(4);
-    fwrite(changedinfo.c_str() ,1 ,changedinfo.size() ,fp);
+    fwrite(changedinfo.c_str(), 1, changedinfo.size(), fp);
     fclose(fp);
     delete[] readfile;
 }
@@ -154,7 +163,7 @@ void admin::hazfkarbar()
     char *readfile = new char[filesize + 1];
     int size = fread(readfile, 1, filesize, fp);
     readfile[size] = '\0';
-    cout << readfile<<endl;
+    cout << readfile << endl;
     try
     {
         jsobj = json::parse(readfile);
@@ -168,12 +177,12 @@ void admin::hazfkarbar()
     }
     cout << "Enter the username of karbar that you wanna delete:" << endl;
     cin >> username;
-    for (int i = 0; i <  jsobj.size(); i++)
+    for (int i = 0; i < jsobj.size(); i++)
     {
         if (jsobj[i]["username"] == username)
         {
             karbar user1(jsobj[i]["username"], jsobj[i]["password"], jsobj[i]["name"], jsobj[i]["lastname"]);
-            karbar::writeinfile(user1, "restore.json" ,(int)jsobj[i]["paneloption"]);
+            karbar::writeinfile(user1, "restore.json", (int)jsobj[i]["paneloption"]);
             jsobj.erase(jsobj.begin() + i);
             flag = 1;
             break;
@@ -187,7 +196,7 @@ void admin::hazfkarbar()
     delete[] readfile;
     fp = fopen("info.json", "w");
     string newinfo = jsobj.dump(4);
-    fwrite(newinfo.c_str() ,1 ,newinfo.size() , fp);
+    fwrite(newinfo.c_str(), 1, newinfo.size(), fp);
     fclose(fp);
 }
 void admin::restorekarbar()
@@ -217,10 +226,10 @@ void admin::restorekarbar()
         delete[] readfile;
         return;
     }
-    for (int i = 0; i <  jsobj.size(); i++)
+    for (int i = 0; i < jsobj.size(); i++)
     {
         karbar user1(jsobj[i]["username"], jsobj[i]["password"], jsobj[i]["name"], jsobj[i]["lastname"]);
-        karbar::writeinfile(user1, "info.json" ,(int)jsobj[i]["paneloption"]);
+        karbar::writeinfile(user1, "info.json", (int)jsobj[i]["paneloption"]);
         jsobj.erase(jsobj.begin() + i);
     }
     fclose(fp);
@@ -236,7 +245,7 @@ void creatingfile(string filename)
         fclose(fp);
         return;
     }
-    else 
+    else
     {
         fclose(fp);
         fp = fopen(filename.c_str(), "w");
@@ -246,6 +255,6 @@ void creatingfile(string filename)
 void admin::showdoroosinfo()
 {
     json jsonarray = parsejson("doroos.json");
-    cout << jsonarray<<endl;
+    cout << jsonarray << endl;
 }
 // با رابطع بین کلاس ها بعد تغریف توی کلاس استاذ باید بیای توی این قسمت
