@@ -16,9 +16,10 @@ void admin::admincore()
              << "4-hazf karbar" << endl
              << "5-restore karbar" << endl;
         cout << "6-show ettelaat doroos" << endl
-             << "7-exit" << endl;
+             << "7-show nomreh ostad" << endl
+             << "8-exit" << endl;
         cin >> option;
-        if (option == 7)
+        if (option == 8)
         {
             exit(0);
         }
@@ -42,6 +43,9 @@ void admin::admincore()
         case 6:
             showdoroosinfo();
             break;
+        case 7:
+            show_nomrehostad();
+            break;
         }
     }
 }
@@ -52,34 +56,14 @@ void admin::addnewdaneshjoo()
 }
 void admin::showkarbaranlist()
 {
-    FILE *fp;
     json jsobj;
-    fp = fopen("info.json", "r");
-    fseek(fp, 0, SEEK_END);
-    int filesize = ftell(fp);
-    fseek(fp, 0, SEEK_SET);
-    char *readfile = new char[filesize + 1];
-    int sizefile = fread(readfile, 1, filesize, fp);
-    readfile[sizefile] = '\0';
-    try
-    {
-        jsobj = json::parse(readfile);
-    }
-    catch (const json::parse_error &e)
-    {
-        cout << "dobareh parse" << endl;
-        delete[] readfile;
-        return;
-    }
-
+    jsobj = parsejson("info.json");
     int jsonarray_size = jsobj.size();
     cout << "asami:" << endl;
     for (int i = 0; i < jsonarray_size; i++)
     {
         cout << jsobj[i]["name"] << endl;
     }
-    fclose(fp);
-    delete[] readfile;
 }
 void admin::virayeshinfokarbar()
 {
@@ -255,6 +239,26 @@ void creatingfile(string filename)
 void admin::showdoroosinfo()
 {
     json jsonarray = parsejson("doroos.json");
-    cout << jsonarray << endl;
+    string matn = jsonarray.dump(4);
+    cout << matn << endl;
 }
-// با رابطع بین کلاس ها بعد تغریف توی کلاس استاذ باید بیای توی این قسمت
+void admin::show_nomrehostad()
+{
+    string usernamed, esmdars;
+    cout << "Enter username daneshjoo nomrehdahandeh" << endl;
+    cin >> usernamed;
+    cout << "Enter dars:" << endl;
+    cin >> esmdars;
+    json jsobj = parsejson("daneshjoo.json");
+    int jssize = jsobj.size();
+    for (int i = 0; i < jssize; i++)
+    {
+        if (jsobj[i]["username"] == usernamed)
+        {
+            if (jsobj[i]["dars"] == esmdars)
+            {
+                cout << (float)jsobj[i]["nomreh_ostad"] << endl;
+            }
+        }
+    }
+}

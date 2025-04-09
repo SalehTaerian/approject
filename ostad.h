@@ -7,12 +7,12 @@
 class ostad : public karbar
 {
 private:
-    void listdaneshjooha(admin access);
+    void listdaneshjooha();
     void ostadcore();
     void newdars();
     dars darsobj;
     void writeindarsfile(string filename);
-
+    void show_javabtaklif();
 public:
     ostad();
     friend void karbar::signin(int option);

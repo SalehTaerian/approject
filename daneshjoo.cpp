@@ -16,9 +16,10 @@ void daneshjoo::daneshjoocore()
              << "4-moshakhasat doroos" << endl
              << "5-moshahedeh nomarat takalif" << endl
              << "6-nomrehdehi be ostad" << endl
-             << "7-exit" << endl;
+             << "7-tahviltaklif" << endl
+             << "8-exit" << endl;
         cin >> option;
-        if (option == 7)
+        if (option == 8)
         {
             break;
         }
@@ -40,7 +41,10 @@ void daneshjoo::daneshjoocore()
             nomarattakalif();
             break;
         case 6:
-            // nomrehostad()
+            nomrehostad();
+            break;
+        case 7:
+            tahviltaklif();
             break;
         }
     }
@@ -111,7 +115,7 @@ void daneshjoo::entekhabvahed()
                                      {"taklif", json::array()},
                                      {"nomrehdars", 0},
                                      {"nomreh_taklif", json::array()},
-                                     {"nomreh_ostad", json::array()}});
+                                     {"nomreh_ostad", 0}});
                 }
                 fp = fopen("daneshjoo.json", "w");
                 string info = jsobj.dump(4);
@@ -138,16 +142,13 @@ void daneshjoo::moshakhasatdars()
     {
         if (jsobj[i]["username"] == usernamegetter())
         {
-            int tedaddars = jsobj[i]["doroos"].size();
-            for (int j = 0; j < tedaddars; j++)
+            esmdars = (string)jsobj[i]["dars"];
+            for (int k = 0; k < size_darsjs; k++)
             {
-                esmdars = jsobj[i]["doroos"][j];
-                for (int k = 0; k < size_darsjs; k++)
+                if (jsobjdoroos[k]["darsname"] == esmdars)
                 {
-                    if (jsobjdoroos[k]["darsname"] == esmdars)
-                    {
-                        cout << jsobjdoroos[k] << endl;
-                    }
+                    string matn = jsobjdoroos[k].dump(4);
+                    cout << matn << endl;
                 }
             }
         }
@@ -166,48 +167,24 @@ void daneshjoo::showkhabar()
 }
 void daneshjoo::nomarattakalif()
 {
-    FILE *fp = fopen("doroos.json", "r");
     json jsonarray;
-    if (fp != nullptr)
-    {
-        fseek(fp, 0, SEEK_END);
-        int fpsize = ftell(fp);
-        fseek(fp, 0, SEEK_SET);
-        if (fpsize > 0)
-        {
-            char *readfile = new char[fpsize + 1];
-            int sizefile = fread(readfile, 1, fpsize, fp);
-            readfile[sizefile] = '\0';
-            fclose(fp);
-            try
-            {
-                jsonarray = json::parse(readfile);
-            }
-            catch (const json::parse_error &e)
-            {
-                cout << "dobareh parse" << endl;
-                delete[] readfile;
-                return;
-            }
-            delete[] readfile;
-        }
-        else
-        {
-            jsonarray = json::array();
-            fclose(fp);
-        }
-    }
-    else
-    {
-        exit(0);
-    }
+    string esmdars;
+    jsonarray = parsejson("daneshjoo.json");
+    cout << "Enter darsi ke mikhay nomarat taklifesho bebini:" << endl;
+    cin >> esmdars;
     int jsonsize = jsonarray.size();
     for (int i = 0; i < jsonsize; i++)
     {
-        int taklifsize = jsonarray[i]["taklif"].size();
-        for (int j = 0; j < taklifsize; j++)
+        if (jsonarray[i]["username"] == usernamegetter())
         {
-            cout << jsonarray[i]["taklif"][j]["nomreh_taklif"] << endl;
+            if (jsonarray[i]["dars"] == esmdars)
+            {
+                int tedadtaklif = jsonarray[i]["nomreh_taklif"].size();
+                for (int j = 0; j < tedadtaklif; j++)
+                {
+                    cout << jsonarray[i]["nomreh_taklif"][j] << endl;
+                }
+            }
         }
     }
 }
@@ -244,7 +221,7 @@ void daneshjoo::nomrehostad()
     json jsobj;
     string esmdars;
     float nomreh;
-    jsobj = parsejson("daneshoo.json");
+    jsobj = parsejson("daneshjoo.json");
     cout << "be ostad kodoom dars mikhay nmreh bedi?" << endl;
     cin >> esmdars;
     cout << "Enter nomreh ostad" << endl;
@@ -260,9 +237,9 @@ void daneshjoo::nomrehostad()
             }
         }
     }
-    FILE *fp = fopen("daneshjoo.json" , "w");
+    FILE *fp = fopen("daneshjoo.json", "w");
     string matnfile = jsobj.dump(4);
     int filesize = matnfile.size();
-    fwrite(matnfile.c_str() ,1 ,filesize ,fp);
+    fwrite(matnfile.c_str(), 1, filesize, fp);
     fclose(fp);
 }

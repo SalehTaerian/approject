@@ -13,7 +13,7 @@ private:
     void hazfkarbar();
     void restorekarbar();
     void showdoroosinfo();
-
+    void show_nomrehostad();
 public:
     void admincore();
     admin();

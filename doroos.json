@@ -3,26 +3,33 @@
         "darsinfo": "one of the best",
         "darsname": "bp",
         "ettelaeieh": [
-            "ssdkd wowfow offow",
-            "ladfldff effe efwef"
+            "salam becheha"
         ],
-        "nomrehdars": 18.75,
         "taklif": [
             {
-                "nomreh_taklif": 19.739999771118164,
-                "sharh_taklif": "sdlkdlk wkfkfw okwrk owfokwf okwfokfwo",
-                "tarikh_payan": "weffewfew",
-                "tarikh_shoroo": "wefwewfew"
+                "sharh_taklif": "2+2?",
+                "tarikh_payan": "sffsggsg",
+                "tarikh_shoroo": "sgffgsg"
+            },
+            {
+                "sharh_taklif": "4+4\u001f",
+                "tarikh_payan": "sgfs",
+                "tarikh_shoroo": "ssgf"
             }
         ],
-        "zarfiat": 17
+        "zarfiat": 19
     },
     {
         "darsinfo": "one of the most important lessons",
         "darsname": "ap",
         "ettelaeieh": [],
-        "nomrehdars": 0.0,
-        "taklif": [],
-        "zarfiat": 15
+        "taklif": [
+            {
+                "sharh_taklif": "3+3?",
+                "tarikh_payan": "sgfgs",
+                "tarikh_shoroo": "sfsgfsg"
+            }
+        ],
+        "zarfiat": 14
     }
 ]

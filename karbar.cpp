@@ -45,7 +45,7 @@ void karbar::signin(int option)
     {
         if (panel != 1 && panel != 2)
         {
-            cout << "incorrect option try again!";
+            cout << "incorrect option try again!" << endl;
             cin >> panel;
         }
         else
@@ -103,9 +103,26 @@ void karbar::signin(int option)
                 ostad ostadobj;
                 ostadobj.ostadcore();
             }
-            daneshjoo daneshjooobj(username, password, name, lastname);
-            daneshjooobj.daneshjoocore();
-            break;
+            else if (panel == 1)
+            {
+                daneshjoo daneshjooobj(username, password, name, lastname);
+                json jsobj;
+                jsobj = parsejson("info.json");
+                int sizeinfofile =jsobj.size();
+                for (int i = 0; i < sizeinfofile;i++)
+                {
+                    if  (jsobj[i]["username"]==username)
+                    {
+                        if((int)jsobj[i]["paneloption"]!=1)
+                        {
+                            cout << "lotafan az panel ostad vared shavid!" << endl;
+                            exit(0);
+                        }
+                    }
+                }
+                    daneshjooobj.daneshjoocore();
+                break;
+            }
         }
         else if (option == 2)
         {
@@ -149,7 +166,7 @@ void karbar::signin(int option)
                 }
             }
             karbar user1(username, password, name, lastname);
-            writeinfile(user1, "info.json" ,panel);
+            writeinfile(user1, "info.json", panel);
             break;
         }
         else
@@ -160,7 +177,7 @@ void karbar::signin(int option)
         }
     }
 }
-void karbar::writeinfile(karbar user1, string filename ,int panel)
+void karbar::writeinfile(karbar user1, string filename, int panel)
 {
     FILE *fp = fopen(filename.c_str(), "r");
     json jsonarray;

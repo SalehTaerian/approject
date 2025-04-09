@@ -1,21 +1,20 @@
 [
     {
-        "doroos": [
-            "bp",
-            "ap"
-        ],
-        "username": "sobhan"
-    },
-    {
-        "doroos": [
-            "bp"
+        "dars": "bp",
+        "nomreh_ostad": 19.0,
+        "nomreh_taklif": [],
+        "nomrehdars": 19.5,
+        "taklif": [
+            "4"
         ],
         "username": "saly"
     },
     {
-        "doroos": [
-            "bp"
-        ],
-        "username": "azar"
+        "dars": "ap",
+        "nomreh_ostad": 0,
+        "nomreh_taklif": [],
+        "nomrehdars": 0,
+        "taklif": [],
+        "username": "saly"
     }
 ]

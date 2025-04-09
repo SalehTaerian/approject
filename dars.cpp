@@ -1,6 +1,7 @@
 #include "dars.h"
 #include <iostream>
 #include "json.hpp"
+#include "karbar.h"
 using json = nlohmann::json;
 dars::dars()
 {
@@ -59,41 +60,10 @@ void dars::addtaklif()
     cin >> takliflist[taklifnum].tarikh_shoroo;
     cout << "Enter tarikh payan:" << endl;
     cin >> takliflist[taklifnum].tarikh_payan;
-    FILE *fp = fopen("doroos.json", "r");
+    FILE *fp;
     json jsonarray;
-    if (fp != nullptr)
-    {
-        fseek(fp, 0, SEEK_END);
-        int fpsize = ftell(fp);
-        fseek(fp, 0, SEEK_SET);
-        if (fpsize > 0)
-        {
-            char *readfile = new char[fpsize + 1];
-            int sizefile = fread(readfile, 1, fpsize, fp);
-            readfile[sizefile] = '\0';
-            fclose(fp);
-            try
-            {
-                jsonarray = json::parse(readfile);
-            }
-            catch (const json::parse_error &e)
-            {
-                cout << "dobareh parse" << endl;
-                delete[] readfile;
-                return;
-            }
-            delete[] readfile;
-        }
-        else
-        {
-            jsonarray = json::array();
-            fclose(fp);
-        }
-    }
-    else
-    {
-        exit(0);
-    }
+    karbar usertmp;
+    jsonarray = usertmp.parsejson("doroos.json");
     int jsonsize = jsonarray.size();
     cout << "Enter namedars" << endl;
     cin >> darsname;
@@ -101,10 +71,11 @@ void dars::addtaklif()
     {
         if (jsonarray[i]["darsname"] == darsname)
         {
-            jsonarray[i]["taklif"].push_back({{"tarikh_shoroo", takliflist[taklifnum].tarikh_shoroo},
-                                              {"tarikh_payan", takliflist[taklifnum].tarikh_payan},
-                                              {"sharh_taklif", takliflist[taklifnum].sharh},
-                                              {"nomreh_taklif", 0}});
+            jsonarray[i]["taklif"].push_back({
+                {"tarikh_shoroo", takliflist[taklifnum].tarikh_shoroo},
+                {"tarikh_payan", takliflist[taklifnum].tarikh_payan},
+                {"sharh_taklif", takliflist[taklifnum].sharh},
+            });
             taklifnum++;
             break;
         }
@@ -118,57 +89,32 @@ void dars::addtaklif()
 void dars::setnomreh_taklif()
 {
     int shomareh_taklif;
+    string name;
     cout << "Enter name dars:" << endl;
     cin >> darsname;
     cout << "Enter shomareh taklif" << endl;
     cin >> shomareh_taklif;
     cout << "Enter nomreh taklif" << endl;
     cin >> takliflist[shomareh_taklif].nomreh_taklif;
-    FILE *fp = fopen("doroos.json", "r");
+    cout << "Enter username daneshjoo:";
+    cin >> name;
+    karbar userttemp;
     json jsonarray;
-    if (fp != nullptr)
-    {
-        fseek(fp, 0, SEEK_END);
-        int fpsize = ftell(fp);
-        fseek(fp, 0, SEEK_SET);
-        if (fpsize > 0)
-        {
-            char *readfile = new char[fpsize + 1];
-            int sizefile = fread(readfile, 1, fpsize, fp);
-            readfile[sizefile] = '\0';
-            fclose(fp);
-            try
-            {
-                jsonarray = json::parse(readfile);
-            }
-            catch (const json::parse_error &e)
-            {
-                cout << "dobareh parse" << endl;
-                delete[] readfile;
-                return;
-            }
-            delete[] readfile;
-        }
-        else
-        {
-            jsonarray = json::array();
-            fclose(fp);
-        }
-    }
-    else
-    {
-        exit(0);
-    }
+    jsonarray = userttemp.parsejson("daneshjoo.json");
     int jsonsize = jsonarray.size();
     for (int i = 0; i < jsonsize; i++)
     {
         if (jsonarray[i]["darsname"] == darsname)
         {
-            jsonarray[i]["taklif"][shomareh_taklif]["nomreh_taklif"] = takliflist[shomareh_taklif].nomreh_taklif;
+            if (jsonarray[i]["username"] == name)
+            {
+                jsonarray[i]["nomreh_taklif"][shomareh_taklif] = takliflist[shomareh_taklif].nomreh_taklif;
+            }
         }
     }
     string matnfile = jsonarray.dump(4);
-    fp = fopen("doroos.json", "w");
+    FILE *fp;
+    fp = fopen("daneshjoo.json", "w");
     int size = matnfile.size();
     fwrite(matnfile.c_str(), 1, size, fp);
     fclose(fp);
@@ -179,41 +125,9 @@ void dars::set_ettelaeieh()
     cin.ignore();
     getline(cin, ettelaeieh[numettel]);
     numettel++;
-    FILE *fp = fopen("doroos.json", "r");
     json jsonarray;
-    if (fp != nullptr)
-    {
-        fseek(fp, 0, SEEK_END);
-        int fpsize = ftell(fp);
-        fseek(fp, 0, SEEK_SET);
-        if (fpsize > 0)
-        {
-            char *readfile = new char[fpsize + 1];
-            int sizefile = fread(readfile, 1, fpsize, fp);
-            readfile[sizefile] = '\0';
-            fclose(fp);
-            try
-            {
-                jsonarray = json::parse(readfile);
-            }
-            catch (const json::parse_error &e)
-            {
-                cout << "dobareh parse" << endl;
-                delete[] readfile;
-                return;
-            }
-            delete[] readfile;
-        }
-        else
-        {
-            jsonarray = json::array();
-            fclose(fp);
-        }
-    }
-    else
-    {
-        exit(0);
-    }
+    karbar usertmp;
+    jsonarray = usertmp.parsejson("doroos.json");
     int jsonsize = jsonarray.size();
     cout << "Enter name dars:" << endl;
     cin >> darsname;
@@ -225,6 +139,7 @@ void dars::set_ettelaeieh()
             break;
         }
     }
+    FILE *fp;
     fp = fopen("doroos.json", "w");
     string matnfile = jsonarray.dump(4);
     fwrite(matnfile.c_str(), 1, matnfile.size(), fp);
@@ -240,53 +155,30 @@ void dars::show_ettel()
 }
 void dars::setnomrehdars()
 {
-    cout << "Enter nomreh" << endl;
+    string esmdars, name;
+    cout << "username daneshjoo:" << endl;
+    cin >> name;
+    cout << "Enter darsname:" << endl;
+    cin >> esmdars;
+    cout << "Enter nomreh:" << endl;
     cin >> nomrehdars;
-    FILE *fp = fopen("doroos.json", "r");
     json jsonarray;
-    if (fp != nullptr)
-    {
-        fseek(fp, 0, SEEK_END);
-        int fpsize = ftell(fp);
-        fseek(fp, 0, SEEK_SET);
-        if (fpsize > 0)
-        {
-            char *readfile = new char[fpsize + 1];
-            int sizefile = fread(readfile, 1, fpsize, fp);
-            readfile[sizefile] = '\0';
-            fclose(fp);
-            try
-            {
-                jsonarray = json::parse(readfile);
-            }
-            catch (const json::parse_error &e)
-            {
-                cout << "dobareh parse" << endl;
-                delete[] readfile;
-                return;
-            }
-            delete[] readfile;
-        }
-        else
-        {
-            jsonarray = json::array();
-            fclose(fp);
-        }
-    }
-    else
-    {
-        exit(0);
-    }
+    karbar karbtmp;
+    jsonarray = karbtmp.parsejson("daneshjoo.json");
     int jsonsize = jsonarray.size();
     for (int i = 0; i < jsonsize; i++)
     {
-        if (jsonarray[i]["darsname"] == darsname)
+        if (jsonarray[i]["dars"] == esmdars)
         {
-            jsonarray[i]["nomrehdars"] = nomrehdars;
-            break;
+            if (jsonarray[i]["username"] == name)
+            {
+                jsonarray[i]["nomrehdars"] = nomrehdars;
+                break;
+            }
         }
     }
-    fp = fopen("doroos.json", "w");
+    FILE *fp;
+    fp = fopen("daneshjoo.json", "w");
     string matnfile = jsonarray.dump(4);
     int size = matnfile.size();
     fwrite(matnfile.c_str(), 1, size, fp);

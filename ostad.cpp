@@ -22,23 +22,22 @@ void ostad::ostadcore()
         cout << "4-create ettelaeieh" << endl
              << "5-gharardadan taklif" << endl
              << "6-sabt nomreh taklif" << endl
-             << "7-exit" << endl;
+             << "7-show javab taklif" << endl
+             << "8-exit" << endl;
         cin >> option;
-        if (option == 7)
+        if (option == 8)
         {
-            break;
+            exit(0);
         }
         switch (option)
         {
         case 1:
-            // listdaneshjooha(access);
+            listdaneshjooha();
             break;
         case 2:
             newdars();
             break;
         case 3:
-            cout << "Enter namedars mored nazar" << endl;
-            cin >> namedars;
             darsobj.setnomrehdars();
             break;
         case 4:
@@ -49,13 +48,28 @@ void ostad::ostadcore()
             break;
         case 6:
             darsobj.setnomreh_taklif();
+            break;
+        case 7:
+            show_javabtaklif();
+            break;
         }
     }
 }
-void ostad::listdaneshjooha(admin access)
+void ostad::listdaneshjooha()
 {
-    // access.showkarbaranlist();
-    // حواست باشه تو اینطوری به کل اعضا دسترسی پیدا می کنی نه فقط دانشجوها
+    string darsesm;
+    cout << "Enter dars mored nazar:" << endl;
+    cin >> darsesm;
+    json jsonobj;
+    jsonobj = parsejson("daneshjoo.json");
+    int sizejs = jsonobj.size();
+    for (int i = 0; i < sizejs; i++)
+    {
+        if (jsonobj[i]["dars"] == darsesm)
+        {
+            cout << jsonobj[i]["username"] << endl;
+        }
+    }
 }
 void ostad::newdars()
 {
@@ -113,7 +127,6 @@ void ostad::writeindarsfile(string filename)
     }
     jsonarray.push_back({{"darsname", darsobj.namedars_getter()},
                          {"darsinfo", darsobj.infodars_getter()},
-                         {"nomrehdars", darsobj.nomrehdarsgetter()},
                          {"zarfiat", darsobj.zarfiat},
                          {"ettelaeieh", json::array()},
                          {"taklif", json::array()}});
@@ -121,4 +134,29 @@ void ostad::writeindarsfile(string filename)
     string info = jsonarray.dump(4);
     fwrite(info.c_str(), 1, info.size(), fp);
     fclose(fp);
+}
+void ostad::show_javabtaklif()
+{
+    string usernamed, esmdars;
+    cout << "Enter username daneshjoo:" << endl;
+    cin >> usernamed;
+    cout << "Enter name dars:" << endl;
+    cin >> esmdars;
+    json jsonobj;
+    jsonobj = parsejson("daneshjoo.json");
+    int tedadozv = jsonobj.size();
+    for (int i = 0; i < tedadozv; i++)
+    {
+        if (jsonobj[i]["dars"] == esmdars)
+        {
+            if (jsonobj[i]["username"] == usernamed)
+            {
+                int tedad_taklif = jsonobj[i]["taklif"].size();
+                for (int j = 0; j < tedad_taklif; j++)
+                {
+                    cout << jsonobj[i]["taklif"][j] << endl;
+                }
+            }
+        }
+    }
 }

@@ -15,10 +15,9 @@ int main()
     cin >> option;
     karbar karbartmp;
     karbartmp.signin(option);
-    //ظزفیت کم نکرد
     if (option == 2)
     {
         karbartmp.signin(1);
     }
-    //احمق نمره باید توی فایل دانشجو باشه و گرنه بقیه هم نمرش می بینن و البته بقیه نمه نمی توننن داشته باشن تکلیفش هم همینظور
+    //ostad javab haro nemibineh daneshjoo soal
 }
