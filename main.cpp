@@ -19,5 +19,4 @@ int main()
     {
         karbartmp.signin(1);
     }
-    //ostad javab haro nemibineh daneshjoo soal
 }
