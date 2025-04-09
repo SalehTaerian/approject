@@ -20,5 +20,6 @@ public:
     daneshjoo(string username, string password, string name, string lastname);
     void nomrehostad();
     void tahviltaklif();
+    void show_nomrehdars();
 };
 #endif

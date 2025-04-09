@@ -14,7 +14,9 @@
         "nomreh_ostad": 0,
         "nomreh_taklif": [],
         "nomrehdars": 0,
-        "taklif": [],
+        "taklif": [
+            "8"
+        ],
         "username": "saly"
     }
 ]

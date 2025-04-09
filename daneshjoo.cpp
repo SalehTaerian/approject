@@ -17,9 +17,10 @@ void daneshjoo::daneshjoocore()
              << "5-moshahedeh nomarat takalif" << endl
              << "6-nomrehdehi be ostad" << endl
              << "7-tahviltaklif" << endl
-             << "8-exit" << endl;
+             <<"8-moshahedeh nomreh"<<endl
+             << "9-exit" << endl;
         cin >> option;
-        if (option == 8)
+        if (option == 9)
         {
             break;
         }
@@ -46,6 +47,8 @@ void daneshjoo::daneshjoocore()
         case 7:
             tahviltaklif();
             break;
+        case 8:
+            show_nomrehdars();
         }
     }
 }
@@ -242,4 +245,23 @@ void daneshjoo::nomrehostad()
     int filesize = matnfile.size();
     fwrite(matnfile.c_str(), 1, filesize, fp);
     fclose(fp);
+}
+void daneshjoo::show_nomrehdars()
+{
+    json jsobj;
+    string esmdars;
+    cout<<"nomreh che darsi mikhay bebini?"<<endl;
+    cin >> esmdars;
+    jsobj = parsejson("daneshjoo.json");
+    int sizefile = jsobj.size();
+    for (int i = 0; i < sizefile;i++)
+    {
+        if (jsobj[i]["username"]==usernamegetter())
+        {
+            if (jsobj[i]["dars"] == esmdars)
+            {
+                cout << jsobj[i]["nomrehdars"] << endl;
+            }
+        }
+    }
 }
