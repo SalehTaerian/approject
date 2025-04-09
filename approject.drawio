@@ -1,33 +1,33 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.1.1 Chrome/132.0.6834.210 Electron/34.3.3 Safari/537.36" version="26.1.1">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="1276" dy="606" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1215" dy="577" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="zkfFHV4jXpPFQw0GAbJ--0" value="karbar" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="220" y="120" width="160" height="230" as="geometry">
+          <mxGeometry x="210" y="10" width="280" height="330" as="geometry">
             <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="zkfFHV4jXpPFQw0GAbJ--1" value="private:&#xa;    " style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zkfFHV4jXpPFQw0GAbJ--0" vertex="1">
-          <mxGeometry y="26" width="160" height="26" as="geometry" />
+          <mxGeometry y="26" width="280" height="26" as="geometry" />
         </mxCell>
         <mxCell id="zkfFHV4jXpPFQw0GAbJ--2" value="    string username&#xa;    string password&#xa;    string name&#xa;    string lastname&#xa;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="zkfFHV4jXpPFQw0GAbJ--0" vertex="1">
-          <mxGeometry y="52" width="160" height="88" as="geometry" />
+          <mxGeometry y="52" width="280" height="88" as="geometry" />
         </mxCell>
         <mxCell id="zkfFHV4jXpPFQw0GAbJ--4" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="zkfFHV4jXpPFQw0GAbJ--0" vertex="1">
-          <mxGeometry y="140" width="160" height="8" as="geometry" />
+          <mxGeometry y="140" width="280" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="zkfFHV4jXpPFQw0GAbJ--5" value=" public:&#xa;    void usernamegetter&#xa;    void passwordgetter&#xa;    void namegetter&#xa;    void lastnamegetter" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zkfFHV4jXpPFQw0GAbJ--0" vertex="1">
-          <mxGeometry y="148" width="160" height="82" as="geometry" />
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--5" value="public:    &#xa;karbar(string given_username, string givaen_password, string given_name, string given_lastname);&#xa;    karbar();&#xa;    string usernamegetter();&#xa;    string passwordgetter();&#xa;    string namegetter();&#xa;    string lastnamegetter();&#xa;    void signin(int option);&#xa;    static void writeinfile(karbar user1 ,  string filename , int panel);&#xa;    json parsejson(string filename);" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zkfFHV4jXpPFQw0GAbJ--0" vertex="1">
+          <mxGeometry y="148" width="280" height="182" as="geometry" />
         </mxCell>
         <mxCell id="zkfFHV4jXpPFQw0GAbJ--6" value="daneshjoo" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="20" y="380" width="160" height="200" as="geometry">
+          <mxGeometry x="20" y="380" width="180" height="306" as="geometry">
             <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="zkfFHV4jXpPFQw0GAbJ--7" value="public:&#xa;   void  showlistdoroos&#xa;   void  zarfiatkhali&#xa;   void  entekhabvahed&#xa;   void moshakhasatdars&#xa;   void showkhabar&#xa;   void nomarattakalif&#xa;   void nomrehostad" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zkfFHV4jXpPFQw0GAbJ--6" vertex="1">
-          <mxGeometry y="26" width="160" height="150" as="geometry" />
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--7" value="    string taklif;&#xa;public:&#xa;    void daneshjoocore();&#xa;    void showlistdoroos();&#xa;    void zarfiatkhali();&#xa;    void entekhabvahed();&#xa;    void moshakhasatdars();&#xa;    void showkhabar();&#xa;    void nomarattakalif();&#xa;    daneshjoo(string username, string password, string name, string lastname);&#xa;    void nomrehostad();&#xa;    void tahviltaklif();" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zkfFHV4jXpPFQw0GAbJ--6" vertex="1">
+          <mxGeometry y="26" width="180" height="280" as="geometry" />
         </mxCell>
         <mxCell id="zkfFHV4jXpPFQw0GAbJ--12" value="" style="endArrow=block;endSize=10;endFill=0;shadow=0;strokeWidth=1;rounded=0;curved=0;edgeStyle=elbowEdgeStyle;elbow=vertical;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="zkfFHV4jXpPFQw0GAbJ--6" target="zkfFHV4jXpPFQw0GAbJ--0" edge="1">
           <mxGeometry width="160" relative="1" as="geometry">
@@ -44,31 +44,60 @@
         <mxCell id="RYtqdAnqOB74bKwXAeZF-39" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="RYtqdAnqOB74bKwXAeZF-25" target="zkfFHV4jXpPFQw0GAbJ--5" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="333" y="390" />
-              <mxPoint x="320" y="390" />
-              <mxPoint x="320" y="380" />
-              <mxPoint x="300" y="380" />
+              <mxPoint x="340" y="400" />
+              <mxPoint x="340" y="400" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="RYtqdAnqOB74bKwXAeZF-25" value="ostad" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=1;strokeWidth=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="254" y="420" width="160" height="160" as="geometry">
+          <mxGeometry x="254" y="420" width="206" height="260" as="geometry">
             <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="RYtqdAnqOB74bKwXAeZF-27" value="public:&#xa;    void createdars  &#xa;    void listdaneshjooha   &#xa;    void sabtnomreh&#xa;    void khabar&#xa;    void taklif&#xa;    void nomrehtaklif&#xa;    &#xa;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=1;html=0;" parent="RYtqdAnqOB74bKwXAeZF-25" vertex="1">
-          <mxGeometry y="26" width="160" height="120" as="geometry" />
+        <mxCell id="RYtqdAnqOB74bKwXAeZF-27" value="private:&#xa;    void listdaneshjooha();&#xa;    void ostadcore();&#xa;    void newdars();&#xa;    dars darsobj;&#xa;    void writeindarsfile(string filename);&#xa;    void show_javabtaklif();&#xa;public:&#xa;    ostad();&#xa;    friend void karbar::signin(int option);" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=1;html=0;" parent="RYtqdAnqOB74bKwXAeZF-25" vertex="1">
+          <mxGeometry y="26" width="206" height="210" as="geometry" />
         </mxCell>
         <mxCell id="RYtqdAnqOB74bKwXAeZF-31" value="admin" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="510" y="360" width="160" height="302" as="geometry">
+          <mxGeometry x="510" y="360" width="200" height="302" as="geometry">
             <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="RYtqdAnqOB74bKwXAeZF-33" value="public:&#xa;   int nomrehostad &#xa;  void addnewdaneshjoo&#xa;    void showkarbaranlist&#xa;   void virayeshinfokarbar&#xa;   void hazfkarbar&#xa;   void restorekarbar&#xa;    void showdoroosinfo" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="RYtqdAnqOB74bKwXAeZF-31" vertex="1">
-          <mxGeometry y="26" width="160" height="204" as="geometry" />
+        <mxCell id="RYtqdAnqOB74bKwXAeZF-33" value="private:&#xa;    int nomrehostad;&#xa;    void addnewdaneshjoo();&#xa;    void showkarbaranlist();&#xa;    void virayeshinfokarbar();&#xa;    void hazfkarbar();&#xa;    void restorekarbar();&#xa;    void showdoroosinfo();&#xa;    void show_nomrehostad();&#xa;public:&#xa;    void admincore();&#xa;    admin();" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="RYtqdAnqOB74bKwXAeZF-31" vertex="1">
+          <mxGeometry y="26" width="200" height="244" as="geometry" />
         </mxCell>
         <mxCell id="RYtqdAnqOB74bKwXAeZF-35" value="&#xa;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="RYtqdAnqOB74bKwXAeZF-31" vertex="1">
-          <mxGeometry y="230" width="160" height="10" as="geometry" />
+          <mxGeometry y="270" width="200" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="DC6sn4bHzLhMU5F6mFXU-1" value="dars" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="200" y="710" width="300" height="400" as="geometry">
+            <mxRectangle x="130" y="380" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DC6sn4bHzLhMU5F6mFXU-2" value="private:&#xa;    string darsname;&#xa;    string darsinfo;&#xa;    float nomrehdars;&#xa;    int taklifnum;&#xa;    string ettelaeieh[10];&#xa;    int numettel = 0;&#xa;public:&#xa;    int zarfiat;&#xa;    dars();&#xa;    taklif takliflist[10];&#xa;    string namedars_getter();&#xa;    string infodars_getter();&#xa;    string *get_ettelaeieh();&#xa;    float nomrehdarsgetter();&#xa;    int taklifnumgetter();&#xa;    dars(string darsname, string darsinfo, int zarfiat);&#xa;    void addtaklif();&#xa;    void setnomreh_taklif();&#xa;    void setnomrehdars();&#xa;    void set_ettelaeieh();&#xa;    void show_ettel();" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="DC6sn4bHzLhMU5F6mFXU-1">
+          <mxGeometry y="26" width="300" height="374" as="geometry" />
+        </mxCell>
+        <mxCell id="DC6sn4bHzLhMU5F6mFXU-3" value="taklif" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="590" y="730" width="200" height="302" as="geometry">
+            <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DC6sn4bHzLhMU5F6mFXU-4" value="private:&#xa;    int nomrehostad;&#xa;    void addnewdaneshjoo();&#xa;    void showkarbaranlist();&#xa;    void virayeshinfokarbar();&#xa;    void hazfkarbar();&#xa;    void restorekarbar();&#xa;    void showdoroosinfo();&#xa;    void show_nomrehostad();&#xa;public:&#xa;    void admincore();&#xa;    admin();" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="DC6sn4bHzLhMU5F6mFXU-3">
+          <mxGeometry y="26" width="200" height="244" as="geometry" />
+        </mxCell>
+        <mxCell id="DC6sn4bHzLhMU5F6mFXU-5" value="&#xa;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="DC6sn4bHzLhMU5F6mFXU-3">
+          <mxGeometry y="270" width="200" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="DC6sn4bHzLhMU5F6mFXU-13" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;rounded=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="510" y="890" as="sourcePoint" />
+            <mxPoint x="500" y="890" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="590" y="890" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DC6sn4bHzLhMU5F6mFXU-14" value="از وابستگی هم استفاده شده" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="70" y="790" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
